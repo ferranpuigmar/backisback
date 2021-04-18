@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../../../Users/puigmar/Downloads/proyecto_final"
+		}
+	],
+	"settings": {
+		"phpcs.showWarnings": false,
+		"php-cs-fixer.formatHtml": true,
+		"php-cs-fixer.onsave": true,
+		"php-cs-fixer.rules": "@PSR2",
+		"files.insertFinalNewline": true,
+		"files.trimFinalNewlines": true,
+		"prettier.tabWidth": 4,
+		"sass.lint.enable": true,
+		"phpformatter.arguments": [
+
+			"--level=psr2"
+		],
+		"phpformatter.composer": true,
+	}
+}
