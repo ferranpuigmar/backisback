@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Calendario Escolar</title>
+  <title>Calendario Escolar.</title>
 </head>
 
 <body>
