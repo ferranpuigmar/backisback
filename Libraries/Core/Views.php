@@ -2,14 +2,22 @@
 
 class Views
 {
-    function getView($controller, $view, $data = "")
+    function getView($controller, $view, $template, $data = "")
     {
         $controller = get_class($controller);
+
         if ($controller == "Home") {
-            $view = "Views/" . $view . ".php";
+            $viewUrl = "Views/" . $view . ".php";
         } else {
-            $view = "Views/" . $controller . "/" . $view . ".php";
+            $viewUrl = "Views/" . $controller . "/" . $view . ".php";
         }
-        require_once($view);
+
+        if ($template) {
+            require_once("Libraries/Core/Templates.php");
+            $template = new Template();
+            $template->getTemplate("auth_template", $viewUrl, $data);
+        } else {
+            require_once($viewUrl);
+        }
     }
 }

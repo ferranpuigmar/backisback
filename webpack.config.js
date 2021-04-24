@@ -1,10 +1,31 @@
 const path = require('path');
 
 module.exports = {
-    entry: './src/js/index.js',
+    entry: './src/index.js',
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, './Assets/js')
+        path: path.resolve(__dirname, './dist'),
+        publicPath: './dist/'
     },
-    mode: 'none'
+    mode: 'none',
+    module: {
+        rules: [
+            {
+                test: /\.(png|jpg)$/,
+                type: 'asset',
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader', 'css-loader'
+                ]
+            },
+            {
+                test: /\.scss$/,
+                use: [
+                    'style-loader', 'css-loader', 'sass-loader'
+                ]
+            }
+        ]
+    }
 };

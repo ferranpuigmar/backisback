@@ -1,6 +1,6 @@
 <?php
 
-class homeModel extends Mysql
+class loginModel extends Mysql
 {
     public function __construct()
     {

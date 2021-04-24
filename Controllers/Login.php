@@ -1,6 +1,6 @@
 <?php
 
-class Home extends Controllers
+class Login extends Controllers
 {
     // Este método contructor es heredado de controllers
     // que carga el metodo loadModel y genera la vista
@@ -9,13 +9,13 @@ class Home extends Controllers
         parent::__construct();
     }
 
-    public function home()
+    public function login()
     {
         // $data['page_id'] = 1;
-        $data['page_tag'] = "Home";
+        $data['page_tag'] = "Login";
         // $data['page_title'] = "Página principal";
         // $data['page_name'] = "home";
         // $data['page_content'] = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, quis. Perspiciatis repellat perferendis accusamus, ea natus id omnis, ratione alias quo dolore tempore dicta cum aliquid corrupti enim deserunt voluptas.";
-        $this->views->getView($this, "home", $data);
+        $this->views->getView($this, "login", $data);
     }
 }

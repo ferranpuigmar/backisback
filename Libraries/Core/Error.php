@@ -9,7 +9,7 @@ class Errors extends Controllers
 
     public function notFound()
     {
-        $this->views->getView($this, "error");
+        $this->templates->getView($this, "error");
     }
 }
 
