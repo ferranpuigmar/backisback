@@ -1,0 +1,48 @@
+.accesForm {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+
+    .card {
+        width: 400px;
+        @apply bg-white shadow-lg;
+        overflow: hidden;
+        border-radius: 5px;
+        border: none;
+        margin: 0 auto;
+
+        &-img-top {
+            height: 120px;
+            background-size: cover !important;
+            background-position: center !important;
+            width: 100%;
+            padding-top: 0;
+        }
+        &-body {
+            @apply bg-white py-4 px-4 pb-5;
+            margin: 0 auto;
+            height: auto;
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        &-footer {
+            text-align: center;
+            @apply bg-white p-4;
+            position: relative;
+
+            span {
+                position: absolute;
+                top: -16px;
+                display: inline-block;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: 14px;
+                padding: 4px 15px;
+                background-color: white;
+            }
+        }
+    }
+}

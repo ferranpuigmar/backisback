@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    global = globalThis //<- this should be enough
+  </script>
+  <script src="dist/bundle.js"></script>
+  <script>
+    // const loginForm = new campus.LoginValidation({
+    //   form: "loginForm",
+    //   userName: "loginForm_userName",
+    //   passoword: "loginForm_passoword"
+    // })
+
+    console.log('campus: ', campus)
+    const login = new window[campus.LoginValidation({})];
+
+  </script>
+</body>
+</html>

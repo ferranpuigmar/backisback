@@ -1,0 +1,13 @@
+.btn {
+    border-radius: 20px;
+
+    &-primary {
+        @apply bg-indigo-600;
+
+        &:hover,
+        &:focus {
+            outline: none;
+            @apply bg-indigo-800;
+        }
+    }
+}
