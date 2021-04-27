@@ -7,11 +7,11 @@
         <form id="loginForm">
           <div class="form-group">
             <label for="login_userName">Usuario</label>
-            <input id="login_userName" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu nombre de usuario">
+            <input id="login_userName" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu nombre de usuario" required>
           </div>
           <div class="form-group">
             <label for="login_password">Contraseña</label>
-            <input id="login_password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            <input id="login_password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
           </div>
           <button type="submit" class="btn btn-primary w-full">Inciar sesión</button>
         </form>
@@ -23,7 +23,8 @@
     </div>
   </div>
 </div>
-<script src="./dist/js/LoginValidation.js"></script>
+
+<script src="./dist/js/LoginForm.js"></script>
 <script>
   window.addEventListener("load", () => {
     const fields = {
@@ -31,8 +32,7 @@
       userName: 'login_userName',
       password: 'login_password',
     }
-    const login = new LoginValidation();
+    const login = new LoginForm();
     login.assignFields(fields)
-    login.sayHello();
   });
 </script>

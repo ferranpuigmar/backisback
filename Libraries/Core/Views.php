@@ -2,7 +2,7 @@
 
 class Views
 {
-    function getView($controller, $view, $template, $data = "")
+    function getView($controller, $view, $data = "", $template_name = "")
     {
         $controller = get_class($controller);
 
@@ -12,10 +12,10 @@ class Views
             $viewUrl = "Views/" . $controller . "/" . $view . ".php";
         }
 
-        if ($template) {
+        if ($template_name !== "") {
             require_once("Libraries/Core/Templates.php");
             $template = new Template();
-            $template->getTemplate("auth_template", $viewUrl, $data);
+            $template->getTemplate($template_name, $viewUrl, $data);
         } else {
             require_once($viewUrl);
         }
