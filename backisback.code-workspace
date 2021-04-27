@@ -1,26 +1,20 @@
 {
-	"folders": [
-		{
-			"path": "."
-		},
-		{
-			"path": "../test2"
-		}
-	],
-	"settings": {
-		"phpcs.showWarnings": false,
-		"php-cs-fixer.formatHtml": true,
-		"php-cs-fixer.onsave": true,
-		"php-cs-fixer.rules": "@PSR2",
-		"files.insertFinalNewline": true,
-		"files.trimFinalNewlines": true,
-		"prettier.tabWidth": 4,
-		"sass.lint.enable": true,
-		"phpformatter.arguments": [
-
-			"--level=psr2"
-		],
-		"phpformatter.composer": true,
-		"liveServer.settings.multiRootWorkspaceName": "backisback",
-	}
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "phpcs.showWarnings": false,
+        "php-cs-fixer.formatHtml": true,
+        "php-cs-fixer.onsave": true,
+        "php-cs-fixer.rules": "@PSR2",
+        "files.insertFinalNewline": true,
+        "files.trimFinalNewlines": true,
+        "prettier.tabWidth": 4,
+        "sass.lint.enable": true,
+        "phpformatter.arguments": ["--level=psr2"],
+        "phpformatter.composer": true,
+        "liveServer.settings.multiRootWorkspaceName": "backisback"
+    }
 }

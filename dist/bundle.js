@@ -8643,22 +8643,25 @@ module.exports = function (it, key) {
 /***/ }),
 /* 308 */,
 /* 309 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (() => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "LoginForm": () => (/* binding */ LoginForm)
-/* harmony export */ });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var LoginForm = /*#__PURE__*/function () {
   function LoginForm(fields) {
+    var _this = this;
+
     _classCallCheck(this, LoginForm);
+
+    _defineProperty(this, "init", function () {
+      _this.listeners();
+    });
 
     this.userName = document.getElementById(fields.userName);
     this.password = document.getElementById(fields.password);
@@ -8666,11 +8669,6 @@ var LoginForm = /*#__PURE__*/function () {
   }
 
   _createClass(LoginForm, [{
-    key: "init",
-    value: function init() {
-      this.listeners();
-    }
-  }, {
     key: "sendForm",
     value: function sendForm() {
       var url = this.form.action;
@@ -8684,12 +8682,12 @@ var LoginForm = /*#__PURE__*/function () {
   }, {
     key: "listeners",
     value: function listeners() {
-      var _this = this;
+      var _this2 = this;
 
       this.form.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        _this.sendForm();
+        _this2.sendForm();
       });
     }
   }]);
@@ -8725,6 +8723,18 @@ var LoginForm = /*#__PURE__*/function () {
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -8790,6 +8800,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "LoginForm": () => (/* reexport safe */ _js_LoginForm_js__WEBPACK_IMPORTED_MODULE_0__.LoginForm)
 /* harmony export */ });
 /* harmony import */ var _js_LoginForm_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(309);
+/* harmony import */ var _js_LoginForm_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_js_LoginForm_js__WEBPACK_IMPORTED_MODULE_0__);
 
 })();
 
