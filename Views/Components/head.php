@@ -11,7 +11,6 @@
   <script>
     global = globalThis
   </script>
-  <script src="./dist/bundle.js"></script>
 </head>
 
 <body class="app-bg">

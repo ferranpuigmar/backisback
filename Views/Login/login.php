@@ -4,7 +4,7 @@
       <div class="card-img-top" style="background: url('./dist/img/campus.jpg')"></div>
       <div class="card-body">
         <h5 class="card-title pb-2 text-indigo-600">Acceso al campus</h5>
-        <form id="loginForm">
+        <form id="loginForm" name="loginForm" action="<?php echo BASE_URL . 'login/loginUser' ?>">
           <div class="form-group">
             <label for="login_userName">Usuario</label>
             <input id="login_userName" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu nombre de usuario" required>
@@ -23,16 +23,13 @@
     </div>
   </div>
 </div>
-
-<script src="./dist/js/LoginForm.js"></script>
 <script>
-  window.addEventListener("load", () => {
-    const fields = {
+  window.addEventListener("DOMContentLoaded", () => {
+    const login = new campus.LoginForm({
       form: 'loginForm',
       userName: 'login_userName',
       password: 'login_password',
-    }
-    const login = new LoginForm();
-    login.assignFields(fields)
+    });
+    login.init()
   });
 </script>
