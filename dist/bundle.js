@@ -8643,7 +8643,16 @@ module.exports = function (it, key) {
 /***/ }),
 /* 308 */,
 /* 309 */
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "LoginForm": () => (/* binding */ LoginForm)
+/* harmony export */ });
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -8663,22 +8672,59 @@ var LoginForm = /*#__PURE__*/function () {
       _this.listeners();
     });
 
-    this.userName = document.getElementById(fields.userName);
-    this.password = document.getElementById(fields.password);
-    this.form = document.getElementById(fields.form);
+    this.username = document.querySelector("#" + fields.username);
+    this.password = document.querySelector("#" + fields.password);
+    this.form = document.querySelector("#" + fields.form);
   }
 
   _createClass(LoginForm, [{
     key: "sendForm",
-    value: function sendForm() {
-      var url = this.form.action;
-      console.log('url: ', url);
-      var name = this.userName.value;
-      var password = this.password.value;
-      var formData = new FormData();
-      formData.append("name", name);
-      formData.append("password", password);
-    }
+    value: function () {
+      var _sendForm = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+        var url, formData, loginResponse, response;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                url = this.form.dataset.url;
+                formData = new FormData(this.form);
+                _context.prev = 2;
+                _context.next = 5;
+                return fetch(url, {
+                  method: 'post',
+                  body: formData
+                });
+
+              case 5:
+                loginResponse = _context.sent;
+                _context.next = 8;
+                return loginResponse.text();
+
+              case 8:
+                response = _context.sent;
+                console.log(response);
+                _context.next = 15;
+                break;
+
+              case 12:
+                _context.prev = 12;
+                _context.t0 = _context["catch"](2);
+                console.log(_context.t0);
+
+              case 15:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this, [[2, 12]]);
+      }));
+
+      function sendForm() {
+        return _sendForm.apply(this, arguments);
+      }
+
+      return sendForm;
+    }()
   }, {
     key: "listeners",
     value: function listeners() {
@@ -8723,18 +8769,6 @@ var LoginForm = /*#__PURE__*/function () {
 /******/ 	}
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -8800,7 +8834,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "LoginForm": () => (/* reexport safe */ _js_LoginForm_js__WEBPACK_IMPORTED_MODULE_0__.LoginForm)
 /* harmony export */ });
 /* harmony import */ var _js_LoginForm_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(309);
-/* harmony import */ var _js_LoginForm_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_js_LoginForm_js__WEBPACK_IMPORTED_MODULE_0__);
 
 })();
 

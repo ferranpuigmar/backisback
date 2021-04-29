@@ -30,6 +30,7 @@ module.exports = {
       type: 'umd',
     },
   },
+  devtool: "source-map",
   module: {
     rules: [
         {
@@ -41,6 +42,7 @@ module.exports = {
         },
         {
             test: /\.(png|jpg|gif)$/,
+            exclude: /node_modules/,
             use: [
                 {
                 loader: "file-loader",
@@ -66,6 +68,14 @@ module.exports = {
   resolve: {
       modules: [path.resolve("./node_modules")],
       extensions: [".json", ".js"],
+  },
+  devServer: {
+    contentBase: path.resolve(__dirname, "./dist"),
+    index: "index.php",
+    port: 8888,
+    writeToDisk: true,
+    watchContentBase: true,
+    open: true,
   },
   plugins: [
     new MiniCSSExtract({

@@ -4,16 +4,16 @@
       <div class="card-img-top" style="background: url('./dist/img/campus.jpg')"></div>
       <div class="card-body">
         <h5 class="card-title pb-2 text-indigo-600">Acceso al campus</h5>
-        <form id="loginForm" name="loginForm" action="<?php echo BASE_URL . 'login/loginUser' ?>">
+        <form id="loginForm" name="loginForm" data-url="<?php echo BASE_URL . 'Login/loginUser' ?>" enctype="multipart/form-data">
           <div class="form-group">
-            <label for="login_userName">Usuario</label>
-            <input id="login_userName" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tu nombre de usuario" required>
+            <label for="login_username">Usuario</label>
+            <input id="login_username" name="username" type="text" class="form-control" placeholder="Tu nombre de usuario" required>
           </div>
           <div class="form-group">
             <label for="login_password">Contraseña</label>
-            <input id="login_password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+            <input id="login_password" name="password" type="password" class="form-control" placeholder="Password" required>
           </div>
-          <button type="submit" class="btn btn-primary w-full">Inciar sesión</button>
+          <button id="loginFormSubmitBtn" type="submit" class="btn btn-primary w-full">Inciar sesión</button>
         </form>
       </div>
       <div class="card-footer text-muted">
@@ -27,7 +27,7 @@
   window.addEventListener("DOMContentLoaded", () => {
     const login = new campus.LoginForm({
       form: 'loginForm',
-      userName: 'login_userName',
+      username: 'login_username',
       password: 'login_password',
     });
     login.init()
