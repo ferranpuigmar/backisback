@@ -17,7 +17,9 @@ class loginModel extends Mysql
         $this->strUser = $user;
         $this->strPassword = $password;
         $sql = "SELECT * from students WHERE 
-                username = '$this->strUser'";
+                username = '$this->strUser' and
+                pass = '$this->strPassword'
+                ";
         $request = $this->select($sql);
         return $request;
     }

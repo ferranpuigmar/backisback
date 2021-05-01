@@ -3,6 +3,7 @@ export class LoginForm{
     this.username = document.querySelector(`#${fields.username}`);
     this.password = document.querySelector(`#${fields.password}`);
     this.form = document.querySelector(`#${fields.form}`);
+    this.msgError = document.querySelector(`#${fields.form} #msgError`);
   }
 
   init = () => {
@@ -19,9 +20,13 @@ export class LoginForm{
           method: 'post',
           body: formData
         }
-      );
-      const response = await loginResponse.text();
+      )
+      const response = await loginResponse.json();
       console.log(response)
+      if(response.status === false){
+        this.msgError.classList.add('d-block');
+        this.msgError.innerHTML = response.msg;
+      }
     } catch (error) {
       console.log(error);
     }

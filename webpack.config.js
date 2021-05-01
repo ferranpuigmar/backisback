@@ -63,10 +63,9 @@ module.exports = {
                 "sass-loader",
             ],
           },
-    ], 
+    ],
   },
   resolve: {
-      modules: [path.resolve("./node_modules")],
       extensions: [".json", ".js"],
   },
   devServer: {

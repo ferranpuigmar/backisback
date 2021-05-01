@@ -4,7 +4,7 @@
   "description": "## Un proyecto del Ciclo Formativo de Grado Superior de DAW",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack"
+    "dev": "webpack --watch"
   },
   "repository": {
     "type": "git",

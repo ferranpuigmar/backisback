@@ -45,4 +45,21 @@
             }
         }
     }
+
+    &.registerForm {
+        .card {
+            width: 750px;
+
+            &-title {
+                @apply mb-5;
+            }
+        }
+    }
+}
+
+.registerForm__subTitle {
+    @apply text-base font-bold border-indigo-400 text-indigo-400 pb-1 mb-4;
+    font-size: 18px;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
 }

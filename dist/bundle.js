@@ -8675,6 +8675,7 @@ var LoginForm = /*#__PURE__*/function () {
     this.username = document.querySelector("#" + fields.username);
     this.password = document.querySelector("#" + fields.password);
     this.form = document.querySelector("#" + fields.form);
+    this.msgError = document.querySelector("#" + fields.form + " #msgError");
   }
 
   _createClass(LoginForm, [{
@@ -8698,25 +8699,31 @@ var LoginForm = /*#__PURE__*/function () {
               case 5:
                 loginResponse = _context.sent;
                 _context.next = 8;
-                return loginResponse.text();
+                return loginResponse.json();
 
               case 8:
                 response = _context.sent;
                 console.log(response);
-                _context.next = 15;
+
+                if (response.status === false) {
+                  this.msgError.classList.add('d-block');
+                  this.msgError.innerHTML = response.msg;
+                }
+
+                _context.next = 16;
                 break;
 
-              case 12:
-                _context.prev = 12;
+              case 13:
+                _context.prev = 13;
                 _context.t0 = _context["catch"](2);
                 console.log(_context.t0);
 
-              case 15:
+              case 16:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[2, 12]]);
+        }, _callee, this, [[2, 13]]);
       }));
 
       function sendForm() {
