@@ -26,12 +26,11 @@ class registerModel extends Mysql
         $this->strNif = $nif;
     //ojo ver con recoger la fecha y hora en formato timestamp $this->???Date_registered= $date_registered;
          
+         $sql = "INSERT INTO students(username,pass,email,name,surname,telephone,nif,date_registered) VALUES(?,?,?,?,?,?,?,?)";
+        // $insert = $this->conexion->prepare($sql);
+		 $arrData = array($this->strUsername,$this->strPassword,$this->strEmail,$this->strEmail,$this->strName,$this->strSurname,$this->strTelephone,$this->strNif);
+         $request_insert = $this->insert($sql,$arrData);
+         return $request_insert;
 
-         $sql = "INSERT INTO students(username, pass, email, name, surname, telephone, nif, date_registered) 
-                 VALUES (?,?,?,?,?,?,?,?)";
-         
-
-        $request = $this->select($sql);
-        return $request;
     }
 }
