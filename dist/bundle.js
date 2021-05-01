@@ -8748,6 +8748,101 @@ var LoginForm = /*#__PURE__*/function () {
   return LoginForm;
 }();
 
+/***/ }),
+/* 310 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Register": () => (/* binding */ Register)
+/* harmony export */ });
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var Register = /*#__PURE__*/function () {
+  function Register(fields) {
+    var _this = this;
+
+    _classCallCheck(this, Register);
+
+    _defineProperty(this, "init", function () {
+      _this.listeners();
+    });
+
+    this.form = document.querySelector("#" + fields.form);
+    this.registerBtn = document.querySelector("#" + fields.form + " #registerBtn");
+    this.fiels = document.querySelectorAll('.form-control');
+  }
+
+  _createClass(Register, [{
+    key: "sendForm",
+    value: function () {
+      var _sendForm = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      function sendForm() {
+        return _sendForm.apply(this, arguments);
+      }
+
+      return sendForm;
+    }()
+  }, {
+    key: "checkForm",
+    value: function checkForm() {
+      // Borramos los anteriores mensajes de error
+      var errorMgDivs = this.form.querySelectorAll('.invalid-feedback');
+      errorMgDivs.forEach(function (errorMsg) {
+        return errorMsg.remove();
+      }); // Validamos formulario y añadimos mensajes de error
+
+      this.form.classList.add('was-validated');
+      this.fiels.forEach(function (field) {
+        var msgError = document.createElement('div');
+        msgError.className = "invalid-feedback";
+        msgError.innerHTML = field.validationMessage;
+        field.parentNode.appendChild(msgError);
+      });
+    }
+  }, {
+    key: "listeners",
+    value: function listeners() {
+      var _this2 = this;
+
+      this.form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (_this2.form.checkValidity()) {
+          _this2.sendForm();
+        } else {
+          _this2.checkForm();
+        }
+      });
+    }
+  }]);
+
+  return Register;
+}();
+
 /***/ })
 /******/ 	]);
 /************************************************************************/
@@ -8838,9 +8933,12 @@ _global["default"]._babelPolyfill = true;
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "LoginForm": () => (/* reexport safe */ _js_LoginForm_js__WEBPACK_IMPORTED_MODULE_0__.LoginForm)
+/* harmony export */   "LoginForm": () => (/* reexport safe */ _js_LoginForm_js__WEBPACK_IMPORTED_MODULE_0__.LoginForm),
+/* harmony export */   "Register": () => (/* reexport safe */ _js_RegisterForm_js__WEBPACK_IMPORTED_MODULE_1__.Register)
 /* harmony export */ });
 /* harmony import */ var _js_LoginForm_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(309);
+/* harmony import */ var _js_RegisterForm_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(310);
+
 
 })();
 

@@ -4,7 +4,7 @@
       <div class="card-img-top" style="background: url('./dist/img/campus.jpg')"></div>
       <div class="card-body">
         <h2 class="card-title text-indigo-600 text-center">Registro de estudiantes</h2>
-        <form id="registerForm" name="registerForm" data-url="<?php echo BASE_URL . 'Register/registerUser' ?>" enctype="multipart/form-data">
+        <form id="registerForm" name="registerForm" data-url="<?php echo BASE_URL . 'Register/registerUser' ?>" enctype="multipart/form-data" novalidate>
           <div class="registerForm__titleCols">
           </div>
           <div class="row">
@@ -27,7 +27,7 @@
                 </div>
                 <div class="form-group">
                   <label for="register_phone">Teléfono</label>
-                  <input id="register_phone" name="phone" type="text" class="form-control" required>
+                  <input id="register_phone" name="phone" type="tel" class="form-control" required>
                 </div>
               </div>
             </div>
@@ -56,7 +56,7 @@
           </div>
           <div id="msgError" class="invalid-feedback -mt-2 mb-3"></div>
           <div class="text-center mt-3">
-            <button id="loginFormSubmitBtn" type="submit" class="btn btn-primary btn-lg">Registrarme</button>
+            <button id="registerBtn" type="submit" class="btn btn-primary btn-lg">Registrarme</button>
           </div>
         </form>
       </div>
@@ -68,12 +68,13 @@
   </div>
 </div>
 <script>
-  // window.addEventListener("DOMContentLoaded", () => {
-  //   const login = new campus.LoginForm({
-  //     form: 'loginForm',
-  //     username: 'register_username',
-  //     password: 'register_password',
-  //   });
-  //   login.init()
-  // });
+  window.addEventListener("DOMContentLoaded", () => {
+    const registerForm = new campus.Register({
+      form: 'registerForm',
+      username: 'register_username',
+      password: 'register_password',
+      course: 'register_course'
+    });
+    registerForm.init()
+  });
 </script>
