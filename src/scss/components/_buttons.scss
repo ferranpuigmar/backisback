@@ -10,4 +10,10 @@
             @apply bg-indigo-800;
         }
     }
+
+    &-lg {
+        border-radius: 25px;
+        @apply px-8;
+        letter-spacing: 0.5px;
+    }
 }

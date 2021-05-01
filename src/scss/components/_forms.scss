@@ -1,3 +1,11 @@
 .form-group {
     @apply mb-3;
+
+    label {
+        @apply text-sm pb-1;
+    }
+
+    .form-control {
+        @apply text-base;
+    }
 }

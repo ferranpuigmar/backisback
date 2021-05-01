@@ -1,3 +1,4 @@
+<?php echo $_SESSION["name"]; ?>
 <div class="container">
   <div class="loginForm accesForm">
     <div class="card" style="width: 18rem;">
@@ -11,14 +12,15 @@
           </div>
           <div class="form-group">
             <label for="login_password">Contraseña</label>
-            <input id="login_password" name="password" type="password" class="form-control" placeholder="Password" required>
+            <input id="login_password" name="pass" type="password" class="form-control" placeholder="Password" required>
           </div>
+          <div id="msgError" class="invalid-feedback -mt-2 mb-3"></div>
           <button id="loginFormSubmitBtn" type="submit" class="btn btn-primary w-full">Inciar sesión</button>
         </form>
       </div>
       <div class="card-footer text-muted">
         <span>No tengo cuenta</span>
-        <button type="button" class="btn btn-outline-secondary w-full">Registrarme</button>
+        <a href="<?php echo BASE_URL . 'register' ?>" class="btn btn-outline-secondary w-full">Registrarme</a>
       </div>
     </div>
   </div>
