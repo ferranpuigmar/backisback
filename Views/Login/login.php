@@ -20,7 +20,7 @@
       </div>
       <div class="card-footer text-muted">
         <span>No tengo cuenta</span>
-        <button type="button" class="btn btn-outline-secondary w-full">Registrarme</button>
+        <a href="<?php echo BASE_URL . 'register' ?>" class="btn btn-outline-secondary w-full">Registrarme</a>
       </div>
     </div>
   </div>
