@@ -2,6 +2,15 @@
 
 class registerModel extends Mysql
 {
+    private $strUsername;
+    private $strPassword;
+    private $strEmail;
+    private $strName;
+    private $strSurame;
+    private $strTelephone;
+    private $strNif;
+    //private $dateDate_registered;
+    
     public function __construct()
     {
         parent::__construct();
@@ -15,7 +24,7 @@ class registerModel extends Mysql
         $this->strSurname = $surname;
         $this->strTelephone = $telephone;
         $this->strNif = $nif;
-    //ver con recoger la fecha y hora en formato timestamp $this->???Date_registered= $date_registered;
+    //ojo ver con recoger la fecha y hora en formato timestamp $this->???Date_registered= $date_registered;
          
 
          $sql = "INSERT INTO students(username, pass, email, name, surname, telephone, nif, date_registered) 
