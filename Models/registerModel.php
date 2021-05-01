@@ -15,6 +15,24 @@ class registerModel extends Mysql
     {
         parent::__construct();
     }
+  
+ //incluimos el método para recuperar todos los cursos
+    
+     public function listCursos(string $active)
+    {
+               
+        $this->strActive = '0';
+         
+        $sql = "SELECT * from courses WHERE 
+                active = '$this->strActive'";
+        $arrData = array($this->strName,$this->strDescription,$this->strEmail,$this->strEmail,$this->strName,$this->strSurname,$this->strTelephone,$this->strNif);
+        $request_cursos = $this->select($sql,$arrData);
+         return $request_insert;
+        
+        $request = $this->select($sql);
+        return $request;
+    }
+    
      public function registerStudent(string $username, string $pass, string $email, string $name, string $surname, string $telephone, string $nif)
     {
         $this->strUsername = $username;
@@ -25,11 +43,22 @@ class registerModel extends Mysql
         $this->strTelephone = $telephone;
         $this->strNif = $nif;
     //ojo ver con recoger la fecha y hora en formato timestamp $this->???Date_registered= $date_registered;
-         
+    
+    //CONFIRMAMOS QUE NO EXISTA EL ESTUDIANTE QUE VAMOS A INSERTAR              
+        $sql = "SELECT * from students WHERE 
+                username = '$this->strUsername'";
+        $request = $this->select($sql);
+         return $request;
+     
+        IF (empty($request))
+        {    
+        
          $sql = "INSERT INTO students(username,pass,email,name,surname,telephone,nif,date_registered) VALUES(?,?,?,?,?,?,?,?)";
          $arrData = array($this->strUsername,$this->strPassword,$this->strEmail,$this->strEmail,$this->strName,$this->strSurname,$this->strTelephone,$this->strNif);
          $request_insert = $this->insert($sql,$arrData);
          return $request_insert;
-
+        }else{
+         return "exit"; 
+             }
     }
 }
