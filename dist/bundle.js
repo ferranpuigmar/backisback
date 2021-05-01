@@ -8788,15 +8788,48 @@ var Register = /*#__PURE__*/function () {
     key: "sendForm",
     value: function () {
       var _sendForm = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+        var url, formData, registerResponse, response;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                url = this.form.dataset.url;
+                formData = new FormData(this.form);
+                _context.prev = 2;
+                _context.next = 5;
+                return fetch(url, {
+                  method: 'post',
+                  body: formData
+                });
+
+              case 5:
+                registerResponse = _context.sent;
+                _context.next = 8;
+                return registerResponse.json();
+
+              case 8:
+                response = _context.sent;
+                console.log(response);
+
+                if (response.status === false) {
+                  this.msgError.classList.add('d-block');
+                  this.msgError.innerHTML = response.msg;
+                }
+
+                _context.next = 16;
+                break;
+
+              case 13:
+                _context.prev = 13;
+                _context.t0 = _context["catch"](2);
+                console.log(_context.t0);
+
+              case 16:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee);
+        }, _callee, this, [[2, 13]]);
       }));
 
       function sendForm() {

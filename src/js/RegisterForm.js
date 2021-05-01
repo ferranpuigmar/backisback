@@ -10,25 +10,25 @@ export class Register{
   }
 
   async sendForm(){
-    // const url = this.form.dataset.url;
-    // const formData = new FormData(this.form);
-    // try {
-    //   const loginResponse = await fetch(
-    //     url,
-    //     { 
-    //       method: 'post',
-    //       body: formData
-    //     }
-    //   )
-    //   const response = await loginResponse.json();
-    //   console.log(response)
-    //   if(response.status === false){
-    //     this.msgError.classList.add('d-block');
-    //     this.msgError.innerHTML = response.msg;
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    const url = this.form.dataset.url;
+    const formData = new FormData(this.form);
+    try {
+      const registerResponse = await fetch(
+        url,
+        { 
+          method: 'post',
+          body: formData
+        }
+      )
+      const response = await registerResponse.json();
+      console.log(response)
+      if(response.status === false){
+        this.msgError.classList.add('d-block');
+        this.msgError.innerHTML = response.msg;
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   checkForm(){
