@@ -12,7 +12,7 @@ class adminModel extends Mysql
         parent::__construct();
     }
 
-    public function insertCourse(string $user, string $password)
+    public function insertCourse(string name, stringdescription`, `date_start`, `date_end`, `active
     {
         
     }
