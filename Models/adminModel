@@ -1,1 +1,30 @@
+<?php
 
+class adminModel extends Mysql
+{
+    private $intIdUser;
+    private $strUser;
+    private $strPassword;
+    private $strToken;
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    public function insertCourse(string $user, string $password)
+    {
+        
+    }
+    
+    public function selectClass(string $user, string $password)
+    {
+        
+    }
+    
+     public function insertClass(string $user, string $password)
+    {
+        
+    }
+    
+}
