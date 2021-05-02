@@ -5,23 +5,39 @@ class adminModel extends Mysql
     private $intIdUser;
     private $strUser;
     private $strPassword;
-    private $strToken;
 
     public function __construct()
     {
         parent::__construct();
     }
 
-    public function insertCourse(string name, stringdescription`, `date_start`, `date_end`, `active
+// GESTION DE CURSOS (ALTA)                           
+    public function insertCourse(string $name, string $description, string $date_start, string $date_end, string $active)
     {
+        $this->strName = $name;
+        $this->strDescription = $description;
+        $this->strDate_start = $date_start;
+        $this->strDate_end = $date_end;
+        $this->strActive = $active;  
         
+        
+         $sql = "INSERT INTO course(name,description,date_start,date_end, active) VALUES(?,?,?,?,?)";
+         $arrData = array($this->strName,$this->strDescription,$this->strDate_start,$this->strDate_end,$this->strActive);
+         $request_insert = $this->insert($sql,$arrData);
+         return $request_insert;
+
     }
     
+//
+// GESTION DE ASIGNATURAS:
+//
+//
+//(LISTADO DE ASIGNATURAS) 
     public function selectClass(string $user, string $password)
     {
         
     }
-    
+//(ALTA ASIGNATURAS)
      public function insertClass(string $user, string $password)
     {
         
