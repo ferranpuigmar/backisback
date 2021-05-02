@@ -33,9 +33,21 @@ class adminModel extends Mysql
 //
 //
 //(LISTADO DE ASIGNATURAS) 
-    public function selectClass(string $user, string $password)
+    public function selectClass(int $id_teacher, int $id_course, `id_schedule`, `name`
     {
         
+        $sql = "SELECT * from students WHERE 
+                username = '$this->strUser' and
+                pass = '$this->strPassword'
+        $sql = "SELECT  cou.name, cla.name, cla.id_teacher,t.name , t.surname, cla.Id_schedule, S.day, S.time_start, S.time_end
+                       from class cla JOIN courses cou JOIN teachers t JOIN schedule s
+                       WHERE cla.id_course   = cou.id_course and 
+                             cla.id_teacher  = t.id_teacher and
+                             cla.id_schedule = s.id_schedule;
+
+
+        $request = $this->select($sql);
+        return $request;
     }
 //(ALTA ASIGNATURAS)
      public function insertClass(string $user, string $password)
