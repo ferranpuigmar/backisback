@@ -39,7 +39,8 @@ class adminModel extends Mysql
                        from class cla JOIN courses cou JOIN teachers t JOIN schedule s
                        WHERE cla.id_course   = cou.id_course and 
                              cla.id_teacher  = t.id_teacher and
-                             cla.id_schedule = s.id_schedule;
+                             cla.id_schedule = s.id_schedule
+                             order by cla.id_class";
      
         $arrData = array(cou.name, cla.name, cla.id_teacher,t.name , t.surname, cla.Id_schedule, S.day, S.time_start, S.time_end); 
         $request = $this->select($sql,$arrData);
