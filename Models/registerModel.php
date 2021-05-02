@@ -18,19 +18,18 @@ class registerModel extends Mysql
   
  //incluimos el método para recuperar todos los cursos
     
-     public function listCursos(string $active)
+     public function listCourses(string $active)
     {
                
-        $this->strActive = '0';
+        $this->strActive = '1';
          
         $sql = "SELECT * from courses WHERE 
                 active = '$this->strActive'";
-        $arrData = array($this->strName,$this->strDescription,$this->strEmail,$this->strEmail,$this->strName,$this->strSurname,$this->strTelephone,$this->strNif);
-        $request_cursos = $this->select($sql,$arrData);
-         return $request_insert;
-        
-        $request = $this->select($sql);
-        return $request;
+        //$arrData = array($this->strname,$this->strdescription,$this->strdate_start,$this->strdate_end);
+// con el fetchall (devuelto todos), PDO::FETCH_ASSOC = ARRAY DE TODOS LOS REGISTROS 
+		$request = $execute->fetchall(PDO::FETCH_ASSOC);
+	    return $request;
+      
     }
     
      public function registerStudent(string $username, string $pass, string $email, string $name, string $surname, string $telephone, string $nif)
