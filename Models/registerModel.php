@@ -54,10 +54,10 @@ class registerModel extends Mysql
         
          $sql = "INSERT INTO students(username,pass,email,name,surname,telephone,nif,date_registered) VALUES(?,?,?,?,?,?,?,?)";
          $arrData = array($this->strUsername,$this->strPassword,$this->strEmail,$this->strEmail,$this->strName,$this->strSurname,$this->strTelephone,$this->strNif);
-         $request_insert = $this->insert($sql,$arrData);
-         return $request_insert;
+         $request = $this->insert($sql,$arrData);
+            return $request;
         }else{
-         return "exit"; 
+            return "exit"; 
              }
     }
 }
