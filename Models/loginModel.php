@@ -21,6 +21,7 @@ class loginModel extends Mysql
                 pass = '$this->strPassword'
                 ";
         $request = $this->select($sql);
+    /*
         if ($request == 100)
         {
         $sql = "SELECT * from user_admin WHERE 
@@ -29,7 +30,7 @@ class loginModel extends Mysql
                 ";
         }
         $request = $this->select($sql);
-            
+  */          
         return $request;
     }
 }
