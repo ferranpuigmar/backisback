@@ -1,7 +1,7 @@
 <?php
 include "Views/components/head.php";
 ?>
-<main template="auth_template">
+<main template="dashboard_template">
   <div class="container">
     <?php include $view ?>
   </div>

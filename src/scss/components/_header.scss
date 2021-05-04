@@ -1,0 +1,9 @@
+.dashboardHeader {
+    background-color: white;
+    @apply p-4;
+
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+}

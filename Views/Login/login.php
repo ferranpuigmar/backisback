@@ -1,4 +1,3 @@
-<?php echo $_SESSION["name"]; ?>
 <div class="container">
   <div class="loginForm accesForm">
     <div class="card" style="width: 18rem;">
