@@ -21,16 +21,5 @@ class loginModel extends Mysql
                 pass = '$this->strPassword'
                 ";
         $request = $this->select($sql);
-    /*
-        if ($request == 100)
-        {
-        $sql = "SELECT * from user_admin WHERE 
-                username = '$this->strUser' and
-                pass = '$this->strPassword'
-                ";
-        }
-        $request = $this->select($sql);
-  */          
-        return $request;
     }
 }

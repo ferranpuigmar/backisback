@@ -37,4 +37,18 @@ class Register extends Controllers
         }
         die();
     }
+
+    public function registerListCourses()
+    {
+        if ($_GET) {
+            $requestCourses = $this->model->registerListCourses();
+            if (empty($requestCourses)) {
+                $arrResponse = array('status' => false, 'msg' => 'No hay cursos activos');
+                echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+            } else {
+                echo json_encode($requestCourses, JSON_UNESCAPED_UNICODE);
+            }
+        }
+        die();
+    }
 }

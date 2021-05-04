@@ -8777,38 +8777,100 @@ var Register = /*#__PURE__*/function () {
 
     _defineProperty(this, "init", function () {
       _this.listeners();
+
+      _this.listCourses();
     });
 
     this.form = document.querySelector("#" + fields.form);
     this.registerBtn = document.querySelector("#" + fields.form + " #registerBtn");
-    this.fiels = document.querySelectorAll('.form-control');
+    this.fields = document.querySelectorAll('.form-control');
+    this.coursesSelector = document.querySelector("#" + fields.coursesSelector);
+    this.baseURL = fields.baseUrl;
   }
 
   _createClass(Register, [{
-    key: "sendForm",
+    key: "listCourses",
     value: function () {
-      var _sendForm = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-        var url, formData, registerResponse, response;
+      var _listCourses = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+        var _this2 = this;
+
+        var url, listCoursesResponse, response;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                url = this.baseURL + "Register/registerListCourses";
+                _context.prev = 1;
+                _context.next = 4;
+                return fetch(url, {
+                  method: 'GET',
+                  headers: {
+                    'content-type': 'application/json'
+                  }
+                });
+
+              case 4:
+                listCoursesResponse = _context.sent;
+                _context.next = 7;
+                return listCoursesResponse.json();
+
+              case 7:
+                response = _context.sent;
+                response.forEach(function (item) {
+                  var option = document.createElement('option');
+                  option.value = item.id_course;
+                  var optionValue = document.createTextNode(item.name);
+                  option.appendChild(optionValue);
+
+                  _this2.coursesSelector.appendChild(option);
+                });
+                _context.next = 14;
+                break;
+
+              case 11:
+                _context.prev = 11;
+                _context.t0 = _context["catch"](1);
+                console.log(_context.t0);
+
+              case 14:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this, [[1, 11]]);
+      }));
+
+      function listCourses() {
+        return _listCourses.apply(this, arguments);
+      }
+
+      return listCourses;
+    }()
+  }, {
+    key: "sendForm",
+    value: function () {
+      var _sendForm = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+        var url, formData, registerResponse, response;
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
                 url = this.form.dataset.url;
                 formData = new FormData(this.form);
-                _context.prev = 2;
-                _context.next = 5;
+                _context2.prev = 2;
+                _context2.next = 5;
                 return fetch(url, {
                   method: 'post',
                   body: formData
                 });
 
               case 5:
-                registerResponse = _context.sent;
-                _context.next = 8;
+                registerResponse = _context2.sent;
+                _context2.next = 8;
                 return registerResponse.json();
 
               case 8:
-                response = _context.sent;
+                response = _context2.sent;
                 console.log(response);
 
                 if (response.status === false) {
@@ -8816,20 +8878,20 @@ var Register = /*#__PURE__*/function () {
                   this.msgError.innerHTML = response.msg;
                 }
 
-                _context.next = 16;
+                _context2.next = 16;
                 break;
 
               case 13:
-                _context.prev = 13;
-                _context.t0 = _context["catch"](2);
-                console.log(_context.t0);
+                _context2.prev = 13;
+                _context2.t0 = _context2["catch"](2);
+                console.log(_context2.t0);
 
               case 16:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee, this, [[2, 13]]);
+        }, _callee2, this, [[2, 13]]);
       }));
 
       function sendForm() {
@@ -8848,7 +8910,7 @@ var Register = /*#__PURE__*/function () {
       }); // Validamos formulario y añadimos mensajes de error
 
       this.form.classList.add('was-validated');
-      this.fiels.forEach(function (field) {
+      this.fields.forEach(function (field) {
         var msgError = document.createElement('div');
         msgError.className = "invalid-feedback";
         msgError.innerHTML = field.validationMessage;
@@ -8858,17 +8920,13 @@ var Register = /*#__PURE__*/function () {
   }, {
     key: "listeners",
     value: function listeners() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.form.addEventListener('submit', function (e) {
         e.preventDefault();
         e.stopPropagation();
 
-        if (_this2.form.checkValidity()) {
-          _this2.sendForm();
-        } else {
-          _this2.checkForm();
-        }
+        _this3.checkForm();
       });
     }
   }]);

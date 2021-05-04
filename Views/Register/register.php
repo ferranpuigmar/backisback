@@ -23,11 +23,11 @@
               <div class="row">
                 <div class="form-group">
                   <label for="register_dni">DNI</label>
-                  <input id="register_dni" name="dni" type="text" class="form-control" required>
+                  <input id="register_dni" pattern="(([X-Z]{1})([-]?)(\d{7})([-]?)([A-Z]{1}))|((\d{8})([-]?)([A-Z]{1}))" name="dni" type="text" class="form-control" required>
                 </div>
                 <div class="form-group">
                   <label for="register_phone">Teléfono</label>
-                  <input id="register_phone" name="phone" type="tel" class="form-control" required>
+                  <input id="register_phone" name="phone" type="tel" class="form-control" pattern="[0-9]+" required>
                 </div>
               </div>
             </div>
@@ -44,11 +44,8 @@
                 </div>
                 <div class="form-group">
                   <label for="register_course">¿A que curso estás apuntado?</label>
-                  <select name="register_course" class="form-select" aria-label="Default select example" required>
-                    <option value="0" selected>Seleciona un curso</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                  <select id="registerCoursesSelector" name="register_course" class="form-select form-control" aria-label="Default select example" required>
+                    <option value="" selected>Seleciona un curso</option>
                   </select>
                 </div>
               </div>
@@ -73,7 +70,8 @@
       form: 'registerForm',
       username: 'register_username',
       password: 'register_password',
-      course: 'register_course'
+      coursesSelector: 'registerCoursesSelector',
+      baseUrl: '<?php echo BASE_URL ?>'
     });
     registerForm.init()
   });
