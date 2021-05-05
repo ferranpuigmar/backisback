@@ -1,0 +1,68 @@
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main.dashboard_template {
+    height: 100%;
+}
+
+.dashboardSection {
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    sidebar,
+    article {
+        @apply p-4;
+    }
+
+    sidebar {
+        @apply p-0 pt-3;
+        width: 200px;
+        height: 100%;
+        background-color: rgba(59, 130, 246, 0.2);
+        ul {
+            margin: 0;
+            padding: 0;
+
+            li {
+                @apply px-4 py-3;
+                position: relative;
+
+                div {
+                    position: relative;
+                }
+
+                svg {
+                    position: absolute;
+                    top: 2px;
+                    left: 0;
+                    font-size: 15px;
+
+                    &.fa-calendar-alt {
+                        font-size: 20px;
+                    }
+                }
+
+                a {
+                    padding-left: 30px;
+                    text-decoration: none;
+                    font-size: 13px;
+                    min-height: 24px;
+                    display: flex;
+                    align-items: center;
+                    line-height: 1.2;
+                    color: #000;
+                }
+            }
+        }
+    }
+
+    article {
+        padding-left: 40px;
+        width: 100%;
+    }
+}

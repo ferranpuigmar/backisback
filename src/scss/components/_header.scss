@@ -1,9 +1,79 @@
 .dashboardHeader {
     background-color: white;
     @apply p-4;
+    box-shadow: -1px -8px 34px 12px rgba(104, 104, 104, 0.318);
+
+    &__logo {
+        display: flex;
+        align-items: center;
+        font-size: 30px;
+        letter-spacing: 1px;
+        font-weight: 800;
+    }
 
     &__wrapper {
         display: flex;
         justify-content: space-between;
+    }
+
+    &__userActions {
+        display: flex;
+    }
+
+    &__user {
+        display: flex;
+        align-items: flex-start;
+
+        #avatar {
+            padding-right: 15px;
+            display: flex;
+            align-items: flex-start;
+
+            svg {
+                width: 44px;
+                height: 44px;
+            }
+        }
+
+        &__info {
+            display: flex;
+
+            &__username {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                div {
+                    line-height: 1;
+                }
+
+                a {
+                    font-size: 13px;
+                    margin-top: 4px;
+                }
+            }
+
+            &__logout {
+                border-left: 1px solid #ebebeb;
+                padding-left: 20px;
+                margin-left: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                font-size: 13px;
+
+                svg {
+                    margin-bottom: 5px;
+                    font-size: 1.2em;
+                }
+
+                a {
+                    text-decoration: none;
+                    color: #000;
+                    display: inline-block;
+                }
+            }
+        }
     }
 }
