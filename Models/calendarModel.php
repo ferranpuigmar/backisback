@@ -15,11 +15,11 @@ class calendarModel extends Mysql
     { 
         $sql = "select en.id_course, cla.id_class, sch.day, sch.time_start, sch.time_end, concat_ws('  ', te.name, te.surname)
                 from students s JOIN enrollment en JOIN class cla JOIN schedule sch JOIN teachers te
-                where s.username     = '$this->strUser' and
-                      s.pass         = '$this->strPassword'
-                      s.id           = en.id_student AND 
-                      en.id_course   = cla.id_course and 
-                      cla.id_class   = sch.id_class and
+                where s.username     = '$this->strUser'      and
+                      s.pass         = '$this->strPassword'  and
+                      s.id           = en.id_student         and  
+                      en.id_course   = cla.id_course         and 
+                      cla.id_class   = sch.id_class          and
                       cla.id_teacher = te.id_teacher";
         $request = $this->select_all($sql);
         return $request;      
