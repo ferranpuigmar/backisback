@@ -37,13 +37,15 @@ class registerModel extends Mysql
         $this->strNif = $nif;
         //ojo ver como recoger la fecha y hora en formato timestamp $this->???Date_registered= $date_registered;
 
-        //CONFIRMAMOS QUE NO EXISTA EL ESTUDIANTE QUE VAMOS A INSERTAR              
+        //CONFIRMAMOS QUE NO EXISTA EL ESTUDIANTE QUE VAMOS A INSERTAR 
+        /*
         $sql = "SELECT * from students 
         WHERE username = '$this->strUsername'";
         $request = $this->select($sql);
         return $request;
 
         if (empty($request)) {
+        */
         //OJO FALTA LA FECHA 
             $sql = "INSERT INTO students(username,pass,email,name,surname,telephone,nif,date_registered) VALUES(?,?,?,?,?,?,?,?)";
             $insert = $this->prepare($sql);
@@ -51,9 +53,11 @@ class registerModel extends Mysql
             $resInsert = $insert->execute($arrData);
             $request = $this->insert($sql, $arrData);
             $request = $this->lastInsertId();
-            return $request;    
+            return $request; 
+        /*
         } else {
             return "exit";
         }
+        */
     }
 }
