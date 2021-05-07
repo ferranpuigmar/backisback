@@ -35,20 +35,23 @@ class registerModel extends Mysql
         $this->strSurname = $surname;
         $this->strTelephone = $telephone;
         $this->strNif = $nif;
-        //ojo ver con recoger la fecha y hora en formato timestamp $this->???Date_registered= $date_registered;
+        //ojo ver como recoger la fecha y hora en formato timestamp $this->???Date_registered= $date_registered;
 
         //CONFIRMAMOS QUE NO EXISTA EL ESTUDIANTE QUE VAMOS A INSERTAR              
-        $sql = "SELECT * from students WHERE 
-                username = '$this->strUsername'";
+        $sql = "SELECT * from students 
+        WHERE username = '$this->strUsername'";
         $request = $this->select($sql);
         return $request;
 
         if (empty($request)) {
-
+        //OJO FALTA LA FECHA 
             $sql = "INSERT INTO students(username,pass,email,name,surname,telephone,nif,date_registered) VALUES(?,?,?,?,?,?,?,?)";
+            $insert = $this->prepare($sql);
             $arrData = array($this->strUsername, $this->strPassword, $this->strEmail, $this->strEmail, $this->strName, $this->strSurname, $this->strTelephone, $this->strNif);
+            $resInsert = $insert->execute($arrData);
             $request = $this->insert($sql, $arrData);
-            return $request;
+            $request = $this->lastInsertId();
+            return $request;    
         } else {
             return "exit";
         }
