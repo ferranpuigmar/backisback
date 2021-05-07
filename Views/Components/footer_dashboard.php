@@ -2,6 +2,7 @@
 <script src="<?php echo BASE_URL . 'dist/bundle.js' ?>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-RXf+QSDCUQs5uwRKaDoXt55jygZZm2V++WUZduaU/Ui/9EGp3f/2KZVahFZBKGH0s774sd3HmrhUy+SgOFQLVQ==" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/avatar-initials@5.0.0/browser/avatar.js" crossorigin="anonymous"></script>
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.js'></script>
 <script>
   window.addEventListener("DOMContentLoaded", () => {
     const avatar = new Avatar(document.getElementById('avatar'), {

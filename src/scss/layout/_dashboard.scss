@@ -2,6 +2,7 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 main.dashboard_template {
@@ -64,5 +65,7 @@ main.dashboard_template {
     article {
         padding-left: 40px;
         width: 100%;
+        overflow: auto;
+        height: calc(100% - 93px);
     }
 }
