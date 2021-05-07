@@ -9,7 +9,7 @@ class calendarModel extends Mysql
   {
     parent::__construct();
   }
-   //recuperamos calendario de clases de un estudiante
+   //recuperamos calendario de clases de un estudiante conectado
 
     public function listSchedule(string $user, string $password)
     { 
