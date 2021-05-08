@@ -1,17 +1,16 @@
-<?php
-var_dump($data);
-?>
-
-<div id="calendar"></div>
+<div id="calendar" class="scheduleCalendar"></div>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      validRange: {
-        start: '2017-05-01',
-        end: '2017-06-01'
+    const calendar = new campus.Schedule({
+      calendarEl: 'calendar',
+      config: {
+        validRange: {
+          start: '2021-05-01',
+          end: '2021-08-01'
+        }
       }
-    });
+    })
+    calendar.init();
     calendar.render();
   });
 </script>

@@ -37,11 +37,15 @@ main.dashboard_template {
                     position: relative;
                 }
 
-                svg {
+                svg,
+                .far,
+                .fas {
                     position: absolute;
                     top: 2px;
                     left: 0;
                     font-size: 15px;
+                    display: block;
+                    min-height: 20px;
 
                     &.fa-calendar-alt {
                         font-size: 20px;
@@ -66,6 +70,6 @@ main.dashboard_template {
         padding-left: 40px;
         width: 100%;
         overflow: auto;
-        height: calc(100% - 93px);
+        height: calc(100vh - 93px);
     }
 }

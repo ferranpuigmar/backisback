@@ -36,6 +36,7 @@ module.exports = {
         {
             test: /\.js/,
             exclude: /node_modules/,
+            include: path.resolve(__dirname, 'src'),
             use: [
                 "babel-loader"
             ],
@@ -54,15 +55,23 @@ module.exports = {
             ],
         },
         {
-            test: /\.scss/,
-            exclude: /node_modules/,
-            use: [
-                MiniCSSExtract.loader,
-                "css-loader",
-                "postcss-loader",
-                "sass-loader",
-            ],
-          },
+          test: /\.scss/,
+          exclude: /node_modules/,
+          include: path.resolve(__dirname, 'src'),
+          use: [
+              MiniCSSExtract.loader,
+              "css-loader",
+              "postcss-loader",
+              "sass-loader",
+          ],
+        },
+        {
+          test: /\.css$/,
+          use: [
+            { loader: MiniCSSExtract.loader },
+            { loader: 'css-loader', options: { importLoaders: 1 } }
+          ]
+        }
     ],
   },
   resolve: {

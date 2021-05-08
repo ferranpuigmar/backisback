@@ -1,7 +1,7 @@
 <header class="dashboardHeader">
   <div class="dashboardHeader__wrapper">
     <div class="dashboardHeader__logo">
-      Calendario Académico
+      Calendario Académico <?= ' - ' . $data['courseName'] ?>
     </div>
     <div class="dashboardHeader__userActions">
       <div class="dashboardHeader__user">

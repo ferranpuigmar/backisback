@@ -1,0 +1,30 @@
+.scheduleCalendar {
+    .fc-view-harness {
+        @apply bg-white;
+
+        .fc-dayGridMonth-view {
+            thead {
+                tbody {
+                    @apply bg-indigo-500;
+                    a {
+                        @apply text-white;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+
+        .fc-daygrid-day.fc-day-today {
+            @apply bg-indigo-500;
+            .fc-daygrid-day-top {
+                a {
+                    @apply text-white;
+                }
+            }
+        }
+    }
+    a {
+        text-decoration: none;
+        @apply text-indigo-500;
+    }
+}

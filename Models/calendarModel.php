@@ -11,7 +11,7 @@ class calendarModel extends Mysql
   }
   //recuperamos calendario de clases de un estudiante conectado
 
-  public function listSchedule(string $user, string $password)
+  public function listSchedule(string $user)
   {
     $sql = "select en.id_course, cla.id_class, sch.day, sch.time_start, sch.time_end, concat_ws('  ', te.name, te.surname)
                 from students s JOIN enrollment en JOIN class cla JOIN schedule sch JOIN teachers te

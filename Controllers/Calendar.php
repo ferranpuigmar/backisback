@@ -12,11 +12,11 @@ class Calendar extends Controllers
     public function calendar()
     {
         // $data['page_id'] = 1;
-        //$data['page_tag'] = "Mi calendario";
-        $data = $this->listSchedule();
-
+        $data['courseName'] = "Curso PHP";
+        $data['section'] = 'calendar';
         $this->views->getView($this, "calendar", $data, "dashboard_template");
     }
+
     public function listSchedule()
     {
         $user = "jlopelo";
