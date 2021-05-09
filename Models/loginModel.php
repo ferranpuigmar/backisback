@@ -46,4 +46,17 @@ class loginModel extends Mysql
             return $requestUser;
         }
     }
+
+    public function listCourseInfo(string $user)
+    {
+        $this->strUser = $user;
+        $sql = "select cur.name, cur.description, cur.date_start, cur.date_end
+            from students s JOIN enrollment en JOIN courses cur
+            where s.username = '$this->strUser' and
+            s.id = en.id_student                and 
+            en.id_course = cur.id_course";
+
+        $request = $this->select($sql);
+        return $request;
+    }
 }

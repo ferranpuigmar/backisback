@@ -10,6 +10,14 @@
         font-size: 30px;
         letter-spacing: 1px;
         font-weight: 800;
+
+        &__course {
+            @apply text-indigo-600 text-xl;
+        }
+
+        &__dates {
+            @apply text-indigo-300 text-xl pl-2 font-normal;
+        }
     }
 
     &__wrapper {

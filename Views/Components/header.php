@@ -1,7 +1,13 @@
+<?php
+$courseDateStart = date_create($_SESSION['courseInfo']['date_start']);
+$courseDateEnd = date_create($_SESSION['courseInfo']['date_end']);
+?>
 <header class="dashboardHeader">
   <div class="dashboardHeader__wrapper">
     <div class="dashboardHeader__logo">
-      Calendario Académico <?= ' - ' . $data['courseName'] ?>
+      <span class="dashboardHeader__logo__course"><?= $_SESSION['courseInfo']['name'] ?></span>
+      <span class="dashboardHeader__logo__dates"><?= "(" . $courseDateStart->format('M Y') . " - " . $courseDateEnd->format('M Y') . ")" ?></span>
+
     </div>
     <div class="dashboardHeader__userActions">
       <div class="dashboardHeader__user">

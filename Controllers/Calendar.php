@@ -6,14 +6,17 @@ class Calendar extends Controllers
     public function __construct()
     {
         session_start();
+        if (empty($_SESSION['username'])) {
+            header('location: ' . BASE_URL . '/login');
+        }
         parent::__construct();
     }
 
     public function calendar()
     {
         // $data['page_id'] = 1;
-        $data['courseName'] = "Curso PHP";
-        $data['section'] = 'calendar';
+        $_SESSION['section'] = 'calendar';
+
         $this->views->getView($this, "calendar", $data, "dashboard_template");
     }
 

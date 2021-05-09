@@ -38,6 +38,10 @@ class Login extends Controllers
                         $_SESSION['is_admin'] = false;
                     }
                     $arrResponse = array('status' => true, 'msg' => 'ok', 'is_admin' => $_SESSION['is_admin'], 'name' => $arrData['name']);
+
+                    // Cargamos los datos del curso en una variable de sesión
+                    $requestCourseGenericInfo = $this->model->listCourseInfo($user);
+                    $_SESSION['courseInfo'] = $requestCourseGenericInfo;
                 }
                 echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
             }

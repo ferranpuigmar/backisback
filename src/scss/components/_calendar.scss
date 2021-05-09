@@ -1,6 +1,8 @@
 .scheduleCalendar {
     .fc-view-harness {
         @apply bg-white;
+        overflow: auto;
+        height: 75vh !important;
 
         .fc-dayGridMonth-view {
             thead {

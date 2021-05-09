@@ -35,6 +35,13 @@ main.dashboard_template {
 
                 div {
                     position: relative;
+
+                    &.selected {
+                        a,
+                        svg {
+                            @apply text-indigo-700 #{!important};
+                        }
+                    }
                 }
 
                 svg,
