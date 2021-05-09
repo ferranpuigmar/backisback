@@ -1,10 +1,10 @@
 <?php
 
-class teacherModel extends Mysql
+class teachersModel extends Mysql
 {
   $this->strName = $name;
-	$this->strSurname = $surmane;
-	$this->strTelephone = $telephone;
+  $this->strSurname = $surmane;
+  $this->strTelephone = $telephone;
   $this->strNif = $nif;
   $this->strMail = $mail; 
          
@@ -13,18 +13,19 @@ class teacherModel extends Mysql
     {
         parent::__construct();
     }
-   // LISTAMOS TODOS LOS CURSOS PARA EL MANTENIMIENTO DE LOS MISMOS 
-    public function listCourses()
+   // LISTAMOS TODOS LOS PROFESORES
+	
+    public function listTeachers()
     {
-        $sql = "SELECT * from courses";
-        $reslistCourses = $this->select all($sql);  
-           return $reslistCourses;
+        $sql = "SELECT * from teachers";
+        $reslistTeachers = $this->select all($sql);  
+           return $reslistTeachers;
     }
-   // ALTA DE CURSOS                            
-    public function insertCourses(string $name, string $description, string $date_start, string $date_end, string $active)
+   // ALTA DE PROFESORES                       
+    public function insertTeachers(string $name, string $surname, string $telephone, string $nif, string $mail)
     {
         
-         $sql = "INSERT INTO course(name,description,date_start,date_end, active) VALUES(?,?,?,?,?)";
+         $sql = "INSERT INTO teachers(name,description,date_start,date_end, active) VALUES(?,?,?,?,?)";
          $arrData = array($this->strName,$this->strDescription,$this->strDate_start,$this->strDate_end,$this->strActive);
          $resinsertCourses = $this->insert($sql,$arrData);
          return $resinsertCourses;
