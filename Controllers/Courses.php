@@ -14,9 +14,31 @@ class courses extends Controllers
     {
     /*
         $data['page_tag'] = "Courses";
-        $data['username'] = $_SESSION['name'];
         $this->views->getView($this, "courses", $data, "auth_template");
      */
     }
   
   
+    $objCourse = new Course();
+
+	//Insertar cursos
+	$insert = $objCourse->insertCours("Jorge",78987898,"jorge@info.com");
+	//echo $insert;
+	//
+	//Estrae todos los registros
+	$course = $objCourse->getUsuarios();
+	print_r("<pre>");
+	print_r($users);
+	print_r("</pre>");
+
+	$updateUser = $objUsuario->updateUser(2,"Roberto Arana",134534534,"rarana@info.com");
+	echo $updateUser;
+
+	$user = $objUsuario->getUser(2);
+	print_r("<pre>");
+	print_r($user);
+	print_r("</pre>");
+
+	$delete = $objUsuario->deluser(2);
+	echo $delete;
+
