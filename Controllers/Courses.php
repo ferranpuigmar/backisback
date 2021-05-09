@@ -19,26 +19,21 @@ class courses extends Controllers
     }
   
   
-    $objCourse = new Course();
+   // RECUPERAMOS LA LISTA DE CURSOS:  id, nombre, descripcion, fecha inicio, fecha fin, activo
 
-	//Insertar cursos
-	$insert = $objCourse->insertCours("Jorge",78987898,"jorge@info.com");
-	echo $insert;
-	/*
-	//Estrae todos los registros
-	$course = $objCourse->getUsuarios();
-	print_r("<pre>");
-	print_r($users);
-	print_r("</pre>");
-
-	$updateUser = $objUsuario->updateUser(2,"Roberto Arana",134534534,"rarana@info.com");
-	echo $updateUser;
-
-	$user = $objUsuario->getUser(2);
-	print_r("<pre>");
-	print_r($user);
-	print_r("</pre>");
-
-	$delete = $objUsuario->deluser(2);
-	echo $delete;
+    public function listCoursesTodos()
+    {
+        if ($_POST) {
+         //   $user = $_POST['username'];
+            $requestCoursesTodos = $this->model->listCoursesTodos();
+            if (empty($requestCoursesTodos)) {
+                $arrResponse = array('status' => false, 'msg' => 'no hay cursos');
+                echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+            } else {
+                echo json_encode($requestCoursesTodos, JSON_UNESCAPED_UNICODE);
+            }
+        }
+        die();
+    }
+}
 
