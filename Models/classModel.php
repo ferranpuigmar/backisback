@@ -2,11 +2,11 @@
 
 class classsModel extends Mysql
 {
-   	private $strId_teacher = $id_teacher;
-	private $strId_course = $id_course;
-	private $strId_schedule = $id_schedule;
-	private $strName= $id_name;
-	private $strColor = $color;
+   	private $strId_teacher;
+	private $strId_course; 
+	private $strId_schedule; 
+	private $strName; 
+	private $strColor;
          
 	
     public function __construct()
@@ -23,6 +23,10 @@ class classsModel extends Mysql
    // ALTA DE CURSOS                            
     public function insertClass(int $id_teacher, int $id_course, int $id_schedule, string $name, string $color)
     {      
+	    
+	$this->intName = $name;
+	$this->strDescription = $description;
+	    
          $sql = "INSERT INTO class(id_teacher, id_course, id_schedule, name, color) VALUES(?,?,?,?,?)";
          $arrData = array($this->intId_teacher,$this->intId_course,$this->intId_schedule,$this->strName,$this->strColor);
          $resinsertClass = $this->insert($sql,$arrData);
