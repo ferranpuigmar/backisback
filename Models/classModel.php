@@ -2,11 +2,11 @@
 
 class classsModel extends Mysql
 {
-   	$this->strId_teacher = $id_teacher;
-	$this->strId_course = $id_course;
-	$this->strId_schedule = $id_schedule;
-	$this->strName= $id_name;
-	$this->strColor = $color;
+   	private $strId_teacher = $id_teacher;
+	private $strId_course = $id_course;
+	private $strId_schedule = $id_schedule;
+	private $strName= $id_name;
+	private $strColor = $color;
          
 	
     public function __construct()
