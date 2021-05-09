@@ -24,10 +24,19 @@ class coursesModel extends Mysql
         $this->strDate_end = $date_end;
         $this->strActive = $active; 
       
-        $sql = "UPDATE courses SET name=?, description=?, date_start=?, date_end=?, active=? WHERE id=$id_course ";
+        $sql = "UPDATE courses SET name=?, description=?, date_start=?, date_end=?, active=? WHERE id_course=$id_course ";
         $arrData = array($this->strName,$this->srtDescription,$this->strDate_start,$this->srtDate_end,$this->strActive);
 	$resupdateCourses = $update->execute($arrData);
 		return $resupdateCourses;
+	    
+    }
+	// BORRAMOS CURSOS 
+  
+    public function deleteCourses(int $id_course)
+    {  
+        $sql = "DELETE from courses WHERE id_course=$id_course ";
+	$resdeleteCourses = $update->execute($arrData);
+		return $resdeleteCourses;
 	    
     }
 
