@@ -35,5 +35,20 @@ class courses extends Controllers
         }
         die();
     }
+    public function insertCourses()
+    {
+        if ($_POST) {
+            $requestinsert_sql = $this->model->insertCourses();
+             if($requestinsert_sql == 0){
+                 // que se devuelve aqui??? el array del insert??
+                    $arrResponse$arrData = array($this->strName,$this->strDescription,$this->strDate_start,$this->strDate_end,$this->strActive);                       
+                    echo json_encode($arrResponse$arrData, JSON_UNESCAPED_UNICODE);
+            } else {
+                 $arrResponse = array('status' => false, 'msg' => 'error insert tabla ');
+                 echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE)
+            }
+        }
+        die();
+    }
 }
 
