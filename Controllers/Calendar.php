@@ -16,28 +16,37 @@ class Calendar extends Controllers
         $data['section'] = 'calendar';
         $this->views->getView($this, "calendar", $data, "dashboard_template");
     }
-
-    public function listSchedule()
+      
+    // RECUPERAMOS LOS CURSOS DE UN ESTUDIANTE: nombre de la clase, dia, fecha inicio, fecha fin y profesor
+    
+    public function listCourses()
     {
-        $user = "jlopelo";
-        $requestUser = $this->model->listSchedule($user);
-        echo $requestUser;
-
-        // if ($_POST) {
-        //     $user = $_POST['username'];
-        //     $pass = $_POST['pass'];
-        //     $requestUser = $this->model->listSchedule($user, $pass);
-        //     if (empty($requestUser)) {
-        //         $arrResponse = array('status' => false, 'msg' => 'no existe usuario o contraseña');
-        //     } else {
-        //         $arrData = $requestUser;
-        //         $__SESSION['idUser'] = $arrData['id'];
-        //         $__SESSION['name'] = $arrData['name'];
-        //         $arrResponse = array('status' => true, 'msg' => 'ok');
-        //     }
-        //     // echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
-        //     echo $requestUser
-        //}
+        if ($_POST) {
+            $requestCourses = $this->model->listCourses();
+            if (empty($requestCourses)) {
+                $arrResponse = array('status' => false, 'msg' => 'estudiante sin cursos');
+                echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+            } else {
+                echo json_encode($requestCourses, JSON_UNESCAPED_UNICODE);
+            }
+        }
         die();
-    }
+     }
+
+     // RECUPERAMOS LAS CLASES DE UN CURSO: descripción del curso, fecha inicio y fecha fin 
+    
+         public function listClass()
+    {
+        if ($_POST) {
+            $requestClass = $this->model->listClass();
+            if (empty($requestClass)) {
+                $arrResponse = array('status' => false, 'msg' => 'Sin clases para este curso');
+                echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+            } else {
+                echo json_encode($requestClass, JSON_UNESCAPED_UNICODE);
+            }
+        }
+        die();
+     }
+
 }
