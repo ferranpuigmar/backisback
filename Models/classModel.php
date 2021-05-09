@@ -43,7 +43,7 @@ class classsModel extends Mysql
   
     public function deleteClass(int $id_class)
     {  
-        $sql = "DELETE from class WHERE id_class=$id_class ";
+        $sql = "DELETE from class WHERE id_class=$id_class";
 	$resdeleteClass = $update->execute($arrData);
 		return $resdeleteClass;
 	    
