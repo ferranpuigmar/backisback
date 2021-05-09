@@ -30,7 +30,7 @@ class coursesModel extends Mysql
          return $resinsertCourses;
 
     }
-     // ACTUALIZAMOS ALGUNO DE LOS CAMPOS DE CURSOS 
+     // ACTUALIZAMOS CAMPOS DE LA TABLA CURSOS
   
     public function updateCourses(int $id_course, string $name,string $description,string $date_start,string $date_end, string $active)
     {
