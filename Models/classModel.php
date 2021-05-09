@@ -33,7 +33,7 @@ class classsModel extends Mysql
   
     public function updateClass(int $id_class, int $id_teacher, int $id_course, int $id_schedule, string $name, string $color)
     {
-        $sql = "UPDATE courses SET id_teacher=?, id_course=?, id_schedule=?, name=?, color=? WHERE id_class=$id_class ";
+        $sql = "UPDATE courses SET id_teacher=?, id_course=?, id_schedule=?, name=?, color=? WHERE id_class=$id_class";
 	$arrData = array($this->intId_teacher,$this->intId_course,$this->intId_schedule,$this->strName,$this->strColor);
 	$resupdateClass = $update->execute($arrData);
 		return $resupdateClass;
