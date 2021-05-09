@@ -2,11 +2,11 @@
 
 class classsModel extends Mysql
 {
-   	$this->strName = $name;
-	  $this->strDescription = $description;
-	  $this->strDate_start = $date_start;
-    $this->strDate_end = $date_end;
-    $this->strActive = $active; 
+   	$this->strId_teacher = $id_teacher;
+	$this->strId_course = $id_course;
+	$this->strId_schedule = $id_schedule;
+	$this->strName= $id_name;
+	$this->strColor = $color;
          
 	
     public function __construct()
@@ -21,40 +21,31 @@ class classsModel extends Mysql
            return $reslistClass;
     }
    // ALTA DE CURSOS                            
-    public function insertCourses(string $name, string $description, string $date_start, string $date_end, string $active)
-    {
-        
-         $sql = "INSERT INTO course(name,description,date_start,date_end, active) VALUES(?,?,?,?,?)";
-         $arrData = array($this->strName,$this->strDescription,$this->strDate_start,$this->strDate_end,$this->strActive);
-         $resinsertCourses = $this->insert($sql,$arrData);
-         return $resinsertCourses;
+    public function insertClass(int $id_teacher, int $id_course, int $id_schedule, string $name, string $color)
+    {      
+         $sql = "INSERT INTO class(id_teacher, id_course, id_schedule, name, color) VALUES(?,?,?,?,?)";
+         $arrData = array($this->intId_teacher,$this->intId_course,$this->intId_schedule,$this->strName,$this->strColor);
+         $resinsertClass = $this->insert($sql,$arrData);
+         return $resinsertClass;
 
     }
-     // ACTUALIZAMOS CAMPOS DE LA TABLA CURSOS
+     // ACTUALIZAMOS CAMPOS DE LA TABLA CLASES (ASIGNATURAS)
   
-    public function updateCourses(int $id_course, string $name,string $description,string $date_start,string $date_end, string $active)
+    public function updateClass(int $id_class, int $id_teacher, int $id_course, int $id_schedule, string $name, string $color)
     {
-        /*
-	$this->strName = $name;
-	$this->strDescription = $description;
-	$this->strDate_start = $date_start;
-        $this->strDate_end = $date_end;
-        $this->strActive = $active; 
-	*/
-      
-        $sql = "UPDATE courses SET name=?, description=?, date_start=?, date_end=?, active=? WHERE id_course=$id_course ";
-        $arrData = array($this->strName,$this->srtDescription,$this->strDate_start,$this->srtDate_end,$this->strActive);
-	$resupdateCourses = $update->execute($arrData);
-		return $resupdateCourses;
+        $sql = "UPDATE courses SET id_teacher=?, id_course=?, id_schedule=?, name=?, color=? WHERE id_class=$id_class ";
+	$arrData = array($this->intId_teacher,$this->intId_course,$this->intId_schedule,$this->strName,$this->strColor);
+	$resupdateClass = $update->execute($arrData);
+		return $resupdateClass;
 	    
     }
-	// BORRAMOS CURSOS 
+	// BORRAMOS CLASES
   
-    public function deleteCourses(int $id_course)
+    public function deleteClass(int $id_class)
     {  
-        $sql = "DELETE from courses WHERE id_course=$id_course ";
-	$resdeleteCourses = $update->execute($arrData);
-		return $resdeleteCourses;
+        $sql = "DELETE from class WHERE id_class=$id_class ";
+	$resdeleteClass = $update->execute($arrData);
+		return $resdeleteClass;
 	    
     }
 
