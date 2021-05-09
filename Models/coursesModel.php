@@ -17,7 +17,7 @@ class coursesModel extends Mysql
     public function listCourses()
     {
         $sql = "SELECT * from courses";
-        $reslistCourses = $this->select all($sql);  
+        $reslistCourses = $this->select_all($sql);  
            return $reslistCourses;
     }
    // ALTA DE CURSOS                            
