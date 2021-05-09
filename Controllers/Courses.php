@@ -23,8 +23,8 @@ class courses extends Controllers
 
 	//Insertar cursos
 	$insert = $objCourse->insertCours("Jorge",78987898,"jorge@info.com");
-	//echo $insert;
-	//
+	echo $insert;
+	/*
 	//Estrae todos los registros
 	$course = $objCourse->getUsuarios();
 	print_r("<pre>");
