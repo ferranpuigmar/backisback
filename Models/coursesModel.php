@@ -24,7 +24,7 @@ class coursesModel extends Mysql
     public function insertCourses(string $name, string $description, string $date_start, string $date_end, string $active)
     {
         
-         $sql = "INSERT INTO course(name,description,date_start,date_end, active) VALUES(?,?,?,?,?)";
+         $sql = "INSERT INTO courses(name,description,date_start,date_end, active) VALUES(?,?,?,?,?)";
          $arrData = array($this->strName,$this->strDescription,$this->strDate_start,$this->strDate_end,$this->strActive);
          $resinsertCourses = $this->insert($sql,$arrData);
          return $resinsertCourses;
