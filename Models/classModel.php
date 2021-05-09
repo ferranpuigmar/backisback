@@ -2,10 +2,10 @@
 
 class classsModel extends Mysql
 {
-   	private $strId_teacher;
-	private $strId_course; 
-	private $strId_schedule; 
-	private $strName; 
+   	private $intId_teacher;
+	private $intId_course;
+	private $intId_schedule;
+	private $strName;
 	private $strColor;
          
 	
@@ -17,15 +17,18 @@ class classsModel extends Mysql
     public function listClass()
     {
         $sql = "SELECT * from class";
-        $reslistClass = $this->select all($sql);  
+        $reslistClass = $this->select_all($sql);  
            return $reslistClass;
     }
    // ALTA DE CURSOS                            
     public function insertClass(int $id_teacher, int $id_course, int $id_schedule, string $name, string $color)
     {      
 	    
-	$this->intName = $name;
-	$this->strDescription = $description;
+	$this->intId_teacher = $id_teacher;
+        $this->intId_course = $id_course;
+	$this->intId_schedule = $id_schedule;
+	$this->strName= $id_name;
+	$this->strColor = $color;
 	    
          $sql = "INSERT INTO class(id_teacher, id_course, id_schedule, name, color) VALUES(?,?,?,?,?)";
          $arrData = array($this->intId_teacher,$this->intId_course,$this->intId_schedule,$this->strName,$this->strColor);
@@ -37,6 +40,12 @@ class classsModel extends Mysql
   
     public function updateClass(int $id_class, int $id_teacher, int $id_course, int $id_schedule, string $name, string $color)
     {
+	$this->intId_teacher = $id_teacher;
+        $this->intId_course = $id_course;
+	$this->intId_schedule = $id_schedule;
+	$this->strName= $id_name;
+	$this->strColor = $color;
+	    
         $sql = "UPDATE class SET id_teacher=?, id_course=?, id_schedule=?, name=?, color=? WHERE id_class=$id_class";
 	$arrData = array($this->intId_teacher,$this->intId_course,$this->intId_schedule,$this->strName,$this->strColor);
 	$resupdateClass = $update->execute($arrData);
