@@ -1,5 +1,5 @@
 <?php
-
+/*
 class Home extends Controllers
 {
     // Este método contructor es heredado de controllers
