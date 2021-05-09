@@ -14,7 +14,7 @@ class coursesModel extends Mysql
         parent::__construct();
     }
    // LISTAMOS TODOS LOS CURSOS PARA EL MANTENIMIENTO DE LOS MISMOS 
-    public function listCourses()
+    public function listCoursesTodos()
     {
         $sql = "SELECT * from courses";
         $reslistCourses = $this->select_all($sql);  
