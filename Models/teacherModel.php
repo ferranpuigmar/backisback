@@ -25,37 +25,29 @@ class teachersModel extends Mysql
     public function insertTeachers(string $name, string $surname, string $telephone, string $nif, string $mail)
     {
         
-         $sql = "INSERT INTO teachers(name,description,date_start,date_end, active) VALUES(?,?,?,?,?)";
-         $arrData = array($this->strName,$this->strDescription,$this->strDate_start,$this->strDate_end,$this->strActive);
-         $resinsertCourses = $this->insert($sql,$arrData);
-         return $resinsertCourses;
+         $sql = "INSERT INTO teachers(name,surname,telephone,nif, mail) VALUES(?,?,?,?,?)";
+         $arrData = array($this->strName,$this->strSurname,$this->strTelephone,$this->strNif,$this->strMail);
+         $resinsertTeachers = $this->insert($sql,$arrData);
+         return $resinsertTeachers;
 
     }
-     // ACTUALIZAMOS CAMPOS DE LA TABLA CURSOS
+     // ACTUALIZAMOS CAMPOS DE LA TABLA PROFESORES
   
-    public function updateCourses(int $id_course, string $name,string $description,string $date_start,string $date_end, string $active)
-    {
-        /*
-	$this->strName = $name;
-	$this->strDescription = $description;
-	$this->strDate_start = $date_start;
-        $this->strDate_end = $date_end;
-        $this->strActive = $active; 
-	*/
-      
-        $sql = "UPDATE courses SET name=?, description=?, date_start=?, date_end=?, active=? WHERE id_course=$id_course ";
-        $arrData = array($this->strName,$this->srtDescription,$this->strDate_start,$this->srtDate_end,$this->strActive);
-	$resupdateCourses = $update->execute($arrData);
-		return $resupdateCourses;
+    public function updateTeachers(int $id_teacher, string $name, string $surname, string $telephone, string $nif, string $mail)
+    { 
+        $sql = "UPDATE teachers SET name=?, surname=?, telephone=?, nif=?, mail=? WHERE id_teacher=$id_teacher";
+        $arrData = array($this->strName,$this->strSurname,$this->strTelephone,$this->strNif,$this->strMail);
+	$resupdateTeachers = $update->execute($arrData);
+		return $resupdateTeachers;
 	    
     }
 	// BORRAMOS CURSOS 
   
-    public function deleteCourses(int $id_course)
+    public function deleteTeachers(int $id_teacher)
     {  
-        $sql = "DELETE from courses WHERE id_course=$id_course ";
-	$resdeleteCourses = $update->execute($arrData);
-		return $resdeleteCourses;
+        $sql = "DELETE from teachers WHERE id_teacher=$id_teacher";
+	$resdeleteTeachers = $update->execute($arrData);
+		return $resdeleteTeachers;
 	    
     }
 
