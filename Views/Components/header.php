@@ -12,7 +12,7 @@
         </div>
         <div class="dashboardHeader__user__info">
           <div class="dashboardHeader__user__info__username">
-            <div class="dashboardHeader__user__info__name">Hola Juanjo</div>
+            <div class="dashboardHeader__user__info__name">Hola <?= $_SESSION['name'] ?></div>
             <a href="#">Editar datos</a>
           </div>
           <div class="dashboardHeader__user__info__logout">

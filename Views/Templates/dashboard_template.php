@@ -1,7 +1,5 @@
 <?php
 include "Views/components/head.php";
-?>
-<?php
 include "Views/components/header.php";
 
 $menu = array(

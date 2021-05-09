@@ -8682,16 +8682,16 @@ var LoginForm = /*#__PURE__*/function () {
     key: "sendForm",
     value: function () {
       var _sendForm = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-        var url, formData, loginResponse, response;
+        var baseUrl, formData, loginResponse, response;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                url = this.form.dataset.url;
+                baseUrl = this.form.dataset.url;
                 formData = new FormData(this.form);
                 _context.prev = 2;
                 _context.next = 5;
-                return fetch(url, {
+                return fetch(baseUrl + "/login/loginUser", {
                   method: 'post',
                   body: formData
                 });
@@ -8705,25 +8705,32 @@ var LoginForm = /*#__PURE__*/function () {
                 response = _context.sent;
                 console.log(response);
 
-                if (response.status === false) {
-                  this.msgError.classList.add('d-block');
-                  this.msgError.innerHTML = response.msg;
+                if (!(response.status === false)) {
+                  _context.next = 14;
+                  break;
                 }
 
-                _context.next = 16;
+                this.msgError.classList.add('d-block');
+                this.msgError.innerHTML = response.msg;
+                return _context.abrupt("return");
+
+              case 14:
+                console.log('baseUrl: ', baseUrl);
+                window.location.href = baseUrl + "/calendar";
+                _context.next = 21;
                 break;
 
-              case 13:
-                _context.prev = 13;
+              case 18:
+                _context.prev = 18;
                 _context.t0 = _context["catch"](2);
                 console.log(_context.t0);
 
-              case 16:
+              case 21:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[2, 13]]);
+        }, _callee, this, [[2, 18]]);
       }));
 
       function sendForm() {
@@ -8946,8 +8953,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fullcalendar_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(312);
 /* harmony import */ var _fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(319);
 /* harmony import */ var _fullcalendar_timegrid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(321);
-/* harmony import */ var _fullcalendar_core_locales_es__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(325);
-/* harmony import */ var _fullcalendar_list__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(323);
+/* harmony import */ var _fullcalendar_core_locales_es__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(323);
+/* harmony import */ var _fullcalendar_list__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(324);
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21325,6 +21332,39 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 /* 323 */
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+
+var es = {
+  code: 'es',
+  week: {
+    dow: 1, // Monday is the first day of the week.
+    doy: 4, // The week that contains Jan 4th is the first week of the year.
+  },
+  buttonText: {
+    prev: 'Ant',
+    next: 'Sig',
+    today: 'Hoy',
+    month: 'Mes',
+    week: 'Semana',
+    day: 'Día',
+    list: 'Agenda',
+  },
+  weekText: 'Sm',
+  allDayText: 'Todo el día',
+  moreLinkText: 'más',
+  noEventsText: 'No hay eventos para mostrar',
+};
+
+exports.default = es;
+
+
+/***/ }),
+/* 324 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -21333,7 +21373,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
 /* harmony export */   "ListView": () => (/* binding */ ListView)
 /* harmony export */ });
-/* harmony import */ var _main_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(324);
+/* harmony import */ var _main_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(325);
 /* harmony import */ var _fullcalendar_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(316);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(315);
 /*!
@@ -21647,45 +21687,12 @@ var main = (0,_fullcalendar_common__WEBPACK_IMPORTED_MODULE_1__.createPlugin)({
 
 
 /***/ }),
-/* 324 */
+/* 325 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
-
-
-/***/ }),
-/* 325 */
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-
-var es = {
-  code: 'es',
-  week: {
-    dow: 1, // Monday is the first day of the week.
-    doy: 4, // The week that contains Jan 4th is the first week of the year.
-  },
-  buttonText: {
-    prev: 'Ant',
-    next: 'Sig',
-    today: 'Hoy',
-    month: 'Mes',
-    week: 'Semana',
-    day: 'Día',
-    list: 'Agenda',
-  },
-  weekText: 'Sm',
-  allDayText: 'Todo el día',
-  moreLinkText: 'más',
-  noEventsText: 'No hay eventos para mostrar',
-};
-
-exports.default = es;
 
 
 /***/ })

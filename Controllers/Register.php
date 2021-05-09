@@ -29,8 +29,8 @@ class Register extends Controllers
             //     $arrResponse = array('status' => false, 'msg' => 'El usuario o la contraseña es incorrecto.');
             // } else {
             //     $arrData = $requestUser;
-            //     $__SESSION['idUser'] = $arrData['id'];
-            //     $__SESSION['name'] = $arrData['name'];
+            //     $_SESSION['idUser'] = $arrData['id'];
+            //     $_SESSION['name'] = $arrData['name'];
             //     $arrResponse = array('status' => true, 'msg' => 'ok');
             // }
             // echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);

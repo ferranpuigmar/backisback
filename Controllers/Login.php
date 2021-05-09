@@ -1,11 +1,11 @@
 <?php
-
 class Login extends Controllers
 {
     // Este método contructor es heredado de controllers
     // que carga el metodo loadModel y genera la vista
     public function __construct()
     {
+        session_start();
         parent::__construct();
     }
 
@@ -13,6 +13,7 @@ class Login extends Controllers
     {
         // $data['page_id'] = 1;
         $data['page_tag'] = "Login";
+        $data['username'] = $_SESSION['name'];
         $this->views->getView($this, "login", $data, "auth_template");
     }
 
@@ -29,9 +30,14 @@ class Login extends Controllers
                     $arrResponse = array('status' => false, 'msg' => 'El usuario o la contraseña es incorrecto.');
                 } else {
                     $arrData = $requestUser;
-                    $__SESSION['idUser'] = $arrData['id'];
-                    $__SESSION['name'] = $arrData['name'];
-                    $arrResponse = array('status' => true, 'msg' => 'ok');
+                    $_SESSION['username'] = $user;
+                    $_SESSION['name'] = $arrData['name'];
+                    if (isset($arrData['id_user_admin'])) {
+                        $_SESSION['is_admin'] = true;
+                    } else {
+                        $_SESSION['is_admin'] = false;
+                    }
+                    $arrResponse = array('status' => true, 'msg' => 'ok', 'is_admin' => $_SESSION['is_admin'], 'name' => $arrData['name']);
                 }
                 echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
             }

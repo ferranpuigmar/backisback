@@ -4,7 +4,7 @@
       <div class="card-img-top" style="background: url('./dist/img/campus.jpg')"></div>
       <div class="card-body">
         <h5 class="card-title pb-2 text-indigo-600">Acceso al campus</h5>
-        <form id="loginForm" name="loginForm" data-url="<?php echo BASE_URL . 'Login/loginUser' ?>" enctype="multipart/form-data">
+        <form id="loginForm" name="loginForm" data-url="<?php echo BASE_URL ?>" enctype="multipart/form-data">
           <div class="form-group">
             <label for="login_username">Usuario</label>
             <input id="login_username" name="username" type="text" class="form-control" placeholder="Tu nombre de usuario" required>
@@ -19,7 +19,7 @@
       </div>
       <div class="card-footer text-muted">
         <span>No tengo cuenta</span>
-        <a href="<?php echo BASE_URL . 'register' ?>" class="btn btn-outline-secondary w-full">Registrarme</a>
+        <a href="<?php echo BASE_URL . '/register' ?>" class="btn btn-outline-secondary w-full">Registrarme</a>
       </div>
     </div>
   </div>

@@ -4,7 +4,7 @@
       <div class="card-img-top" style="background: url('./dist/img/campus.jpg')"></div>
       <div class="card-body">
         <h2 class="card-title text-indigo-600 text-center">Registro de estudiantes</h2>
-        <form id="registerForm" name="registerForm" data-url="<?php echo BASE_URL . 'Register/registerUser' ?>" enctype="multipart/form-data" novalidate>
+        <form id="registerForm" name="registerForm" data-url="<?php echo BASE_URL . '/Register/registerUser' ?>" enctype="multipart/form-data" novalidate>
           <div class="registerForm__titleCols">
           </div>
           <div class="row">

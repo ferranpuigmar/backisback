@@ -11,11 +11,11 @@ export class LoginForm{
   }
 
   async sendForm(){
-    const url = this.form.dataset.url;
+    const baseUrl = this.form.dataset.url;
     const formData = new FormData(this.form);
     try {
       const loginResponse = await fetch(
-        url,
+        `${baseUrl}/login/loginUser`,
         { 
           method: 'post',
           body: formData
@@ -26,7 +26,10 @@ export class LoginForm{
       if(response.status === false){
         this.msgError.classList.add('d-block');
         this.msgError.innerHTML = response.msg;
+        return;
       }
+      console.log('baseUrl: ', baseUrl)
+      window.location.href = `${baseUrl}/calendar`;
     } catch (error) {
       console.log(error);
     }
