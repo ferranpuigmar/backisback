@@ -2,13 +2,12 @@
 
 class teachersModel extends Mysql
 {
-  $this->strName = $name;
-  $this->strSurname = $surmane;
-  $this->strTelephone = $telephone;
-  $this->strNif = $nif;
-  $this->strMail = $mail; 
-         
-	
+  private $strName;
+  private $strSurname;
+  private $strTelephone;
+  private $strNif;
+  private $strMail; 
+  
     public function __construct()
     {
         parent::__construct();
@@ -18,13 +17,18 @@ class teachersModel extends Mysql
     public function listTeachers()
     {
         $sql = "SELECT * from teachers";
-        $reslistTeachers = $this->select all($sql);  
+        $reslistTeachers = $this->select_all($sql);  
            return $reslistTeachers;
     }
    // ALTA DE PROFESORES                       
     public function insertTeachers(string $name, string $surname, string $telephone, string $nif, string $mail)
     {
-        
+        $this->strName = $name;
+  	$this->strSurname = $surmane;
+  	$this->strTelephone = $telephone;
+  	$this->strNif = $nif;
+  	$this->strMail = $mail; 
+	 
          $sql = "INSERT INTO teachers(name,surname,telephone,nif, mail) VALUES(?,?,?,?,?)";
          $arrData = array($this->strName,$this->strSurname,$this->strTelephone,$this->strNif,$this->strMail);
          $resinsertTeachers = $this->insert($sql,$arrData);
@@ -35,6 +39,12 @@ class teachersModel extends Mysql
   
     public function updateTeachers(int $id_teacher, string $name, string $surname, string $telephone, string $nif, string $mail)
     { 
+	$this->strName = $name;
+  	$this->strSurname = $surmane;
+  	$this->strTelephone = $telephone;
+  	$this->strNif = $nif;
+  	$this->strMail = $mail; 
+	
         $sql = "UPDATE teachers SET name=?, surname=?, telephone=?, nif=?, mail=? WHERE id_teacher=$id_teacher";
         $arrData = array($this->strName,$this->strSurname,$this->strTelephone,$this->strNif,$this->strMail);
 	$resupdateTeachers = $update->execute($arrData);
