@@ -31,7 +31,7 @@ export class Schedule{
           center: 'title',
           right: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
-        ...this.config
+        ...this.config,
       });
   }
 }

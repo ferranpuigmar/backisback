@@ -6,31 +6,31 @@ $menu = array(
   array(
     "sectionSlug" => 'calendar',
     "icon" => "far fa-calendar-alt",
-    "link" => "#",
+    "link" => "/calendar",
     "name" => "Calendario"
   ),
   array(
     "sectionSlug" => 'manage-classes',
     "icon" => "fas fa-chalkboard",
-    "link" => "#",
+    "link" => "/classes",
     "name" => "Gestionar clases"
   ),
   array(
     "sectionSlug" => 'manage-course',
     "icon" => "fas fa-book-open",
-    "link" => "#",
+    "link" => "/course",
     "name" => "Gestionar curso"
   ),
   array(
     "sectionSlug" => 'assign-roles',
     "icon" => "fas fa-user-cog",
-    "link" => "#",
+    "link" => "/roles",
     "name" => "Asignar Roles"
   ),
   array(
     "sectionSlug" => 'manage-teachers',
     "icon" => "fas fa-chalkboard-teacher",
-    "link" => "#",
+    "link" => "/teachers",
     "name" => "Gestionar profesores"
   )
 );
@@ -49,7 +49,7 @@ $menu = array(
           $listado .= "<li>
                         <div class=" . $selectedClassName . ">
                           <i class='" . $menu[$i]['icon'] . "'></i>
-                          <a href='" . $menu[$i]['link'] . "'>Calendario</a>
+                          <a href='" . BASE_URL . $menu[$i]['link'] . "'>" . $menu[$i]['name'] . "</a>
                         </div>
                       </li>
                       ";

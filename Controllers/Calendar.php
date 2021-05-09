@@ -16,6 +16,7 @@ class Calendar extends Controllers
     {
         // $data['page_id'] = 1;
         $_SESSION['section'] = 'calendar';
+        $data = $this->model->listClass($_SESSION['username']);
 
         $this->views->getView($this, "calendar", $data, "dashboard_template");
     }
@@ -39,18 +40,10 @@ class Calendar extends Controllers
 
     // RECUPERAMOS LAS CLASES DE UN CURSO: descripción del curso, fecha inicio y fecha fin 
 
-    public function listClass()
+    public function listClass($user)
     {
-        if ($_POST) {
-            $user = $_POST['username'];
-            $requestClass = $this->model->listClass($user);
-            if (empty($requestClass)) {
-                $arrResponse = array('status' => false, 'msg' => 'Sin clases para este curso');
-                echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
-            } else {
-                echo json_encode($requestClass, JSON_UNESCAPED_UNICODE);
-            }
-        }
+        $requestClass = $this->model->listClass($user);
+        return json_encode($requestClass, JSON_UNESCAPED_UNICODE);
         die();
     }
 }
