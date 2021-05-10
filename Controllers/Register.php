@@ -42,9 +42,8 @@ class Register extends Controllers
                   $arrResponse = array('status' => false, 'msg' => 'Error en el Alta de estudiantes');
          }
            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
-           die();
-         
-
+           die();  
+    }
     public function registerListCourses()
     {
         if ($_GET) {
