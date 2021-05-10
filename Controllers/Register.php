@@ -32,15 +32,14 @@ class Register extends Controllers
          $strNif = $_POST['nif'];
          $strDat_registered  = $_POST['dat_registered'];
         
-        
-         $resinsertCourses = $this->model->insertCourses($intId_course, $strName, $strDescription, $strDate_start, $strDate_end, $strActive);
-           
-         if($resinsertCourses > 0){
-                  $arrResponse = array('status' => true, 'msg' => 'Alta de cursos ok ');
-         }else if($resinsertCourses = 'exist'){             
-                  $arrResponse = array('status' => false, 'msg' => 'Aviso: Curso ya existe');    
+         $resinsertStudents = $this->model->insertStudents($strUsername, $strPass, $strEmail, $strName, $strSurname, $strTelephone, $strNif, $strDat_registered);
+         
+        if($resinsertStudents > 0){
+                  $arrResponse = array('status' => true, 'msg' => 'Alta de estudiantes ok ');
+         }else if($resinsertStudents = 'exist'){             
+                  $arrResponse = array('status' => false, 'msg' => 'Aviso: estudiantes ya existe');    
          }else {
-                  $arrResponse = array('status' => false, 'msg' => 'Error en el Alta del curso');
+                  $arrResponse = array('status' => false, 'msg' => 'Error en el Alta de estudiantes');
          }
            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
            die();
