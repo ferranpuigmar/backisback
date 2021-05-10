@@ -24,16 +24,16 @@ class coursesModel extends Mysql
     public function insertCourses(int $id_courses, string $name, string $description, string $date_start, string $date_end, string $active)
     {
 	$return ="";
-	$this->intId_courses = $id_courses;    
+	$this->intId_course = $id_course;    
         $this->strName = $name;
 	$this->strDescription = $description;
 	$this->strDate_start = $date_start;
         $this->strDate_end = $date_end;
         $this->strActive = $active; 
 	    
-	  $sql = "SELECT * from courses where id_courses = = '$this->intId_courses'";
-          $reslistCourse = $this->select_all($sql); 
-	  if (empty($reslistCourse)) {
+	  $sql = "SELECT * from courses where id_course = '$this->intId_course'";
+          $reslistCourses = $this->select_all($sql); 
+	  if (empty($reslistCourses)) {
              $sql_insert = "INSERT INTO courses(name,description,date_start,date_end, active) VALUES(?,?,?,?,?)";
              $arrData = array($this->strName,$this->strDescription,$this->strDate_start,$this->strDate_end,$this->strActive);
              $resinsertCourses = $this->insert($sql_insert,$arrData);
