@@ -13,7 +13,11 @@ function isActive($value)
 ?>
 
 <div id="courses" class="courses">
-    <h1 class="text-2xl">Listado de cursos</h1>
+    <div class="courses__header flex justify-between">
+        <h1 class="text-2xl">Listado de cursos</h1>
+        <button id="addCourseBtn" type="button" class="btn btn-primary" data-bs-toggle='modal' data-bs-target='#addCourseModal'>+ Añadir curso</button>
+    </div>
+
     <?php
     if (isset($data['status'])) {
         echo "<div>" . $data['msg'] . "</div>";
@@ -71,6 +75,8 @@ function isActive($value)
     }
     ?>
 </div>
+
+<!-- Modal for edit -->
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-dialog">
@@ -105,6 +111,45 @@ function isActive($value)
         </div>
     </div>
 </div>
+
+<!-- Modal for create new Course -->
+<div class="modal fade" id="addCourseModal" tabindex="-1" aria-labelledby="addCourseModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Crear curso</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addCourseForm" name="registerForm" data-url="<?php echo BASE_URL . '/Courses/setInsertCourses' ?>" enctype="multipart/form-data" novalidate>
+                        <div class="form-group">
+                            <label for="create_course_name">Nombre</label>
+                            <input id="create_course_name" name="name" type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="create_course_description">Descripción</label>
+                            <input id="create_course_description" name="description" type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="create_course_date_start">Fecha inicio</label>
+                            <input id="create_course_date_start" name="date_start" type="date" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="create_course_date_end">Fecha Fin</label>
+                            <input id="create_course_date_end" name="date_end" type="date" class="form-control" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id="createCourseBtn" type="button" class="btn btn-primary">Añadir curso</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     const listData = <?php echo json_encode($data, JSON_UNESCAPED_UNICODE) ?>;
     window.addEventListener('DOMContentLoaded', () => {
@@ -178,6 +223,42 @@ function isActive($value)
                     console.log(error);
                 }
             })
+        })
+
+        // Modal creación curso
+        const createCourseModal = document.getElementById('addCourseModal');
+        createCourseModal.addEventListener('show.bs.modal', function(event) {
+            const createForm = document.getElementById('addCourseForm');
+            const requestUrl = createForm.dataset.url;
+            const formData = new FormData();
+            const name = document.getElementById('create_course_name')
+            const description = document.getElementById('create_course_description')
+            const date_start = document.getElementById('create_course_date_start')
+            const date_end = document.getElementById('create_course_date_end')
+            const active = "1";
+
+            // listeners
+            const formAddCourseBtn = document.getElementById('createCourseBtn')
+            formAddCourseBtn.addEventListener('click', async () => {
+                formData.append('name', name.value)
+                formData.append('description', description.value)
+                formData.append('date_start', date_start.value)
+                formData.append('date_end', date_end.value)
+                formData.append('active', active)
+                try {
+                    const addCoursesResponse = await fetch(
+                        requestUrl, {
+                            method: 'POST',
+                            body: formData
+                        }
+                    )
+                    const response = await addCoursesResponse.json();
+                    console.log(response)
+                } catch (error) {
+                    console.log(error);
+                }
+            })
+
         })
     })
 </script>

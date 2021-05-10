@@ -42,25 +42,25 @@ class Courses extends Controllers
     }
 
     //RECUPERAMOS EL ALTA EN LA TABLA DE CURSOS
-
     public function setInsertCourses()
     {
-        $intId_course = $_POST['id_courses'];
-        $strName = $_POST['name'];
-        $strDescription = $_POST['description'];
-        $strDate_start = $_POST['date_start'];
-        $strDate_end = $_POST['date_end'];
-        $strActive = $_POST['active'];
-        $resinsertCourses = $this->model->insertCourses($intId_course, $strName, $strDescription, $strDate_start, $strDate_end, $strActive);
+        if ($_POST) {
+            $strName = $_POST['name'];
+            $strDescription = $_POST['description'];
+            $strDate_start = $_POST['date_start'];
+            $strDate_end = $_POST['date_end'];
 
-        if ($resinsertCourses > 0) {
-            $arrResponse = array('status' => true, 'msg' => 'Alta de cursos ok ');
-        } else if ($resinsertCourses = 'exist') {
-            $arrResponse = array('status' => false, 'msg' => 'Aviso: Curso ya existe');
-        } else {
-            $arrResponse = array('status' => false, 'msg' => 'Error en el Alta del curso');
+            $resinsertCourses = $this->model->insertCourses($strName, $strDescription, $strDate_start, $strDate_end, "1");
+
+            if ($resinsertCourses > 0) {
+                $arrResponse = array('status' => true, 'msg' => 'Alta de cursos ok ');
+            } else if ($resinsertCourses = 'exist') {
+                $arrResponse = array('status' => false, 'msg' => 'Aviso: Curso ya existe');
+            } else {
+                $arrResponse = array('status' => false, 'msg' => 'Error en el Alta del curso');
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }
-        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         die();
     }
 
