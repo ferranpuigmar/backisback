@@ -40,13 +40,13 @@ class courses extends Controllers
     
     public function setInsertCourses()
     {
-         $intId_courses = $_POST['id_courses'];
+         $intId_course = $_POST['id_courses'];
          $strName = $_POST['name'];
          $strDescription = $_POST['description'];
          $strDate_start = $_POST['date_start'];
          $strDate_end = $_POST['date_end'];
          $strActive = $_POST['active'];
-         $resinsertCourses = $this->model->insertCourses($intId_courses, $strName, $strDescription, $strDate_start, $strDate_end, $strActive);
+         $resinsertCourses = $this->model->insertCourses($intId_course, $strName, $strDescription, $strDate_start, $strDate_end, $strActive);
            
          if($resinsertCourses > 0){
                   $arrResponse = array('status' => true, 'msg' => 'Alta de cursos ok ');
@@ -63,14 +63,14 @@ class courses extends Controllers
     
     public function setUpdateCourses()
     {
-         $intId_courses = $_POST['id_courses'];
+         $intId_course = $_POST['id_courses'];
          $strName = $_POST['name'];
          $strDescription = $_POST['description'];
          $strDate_start = $_POST['date_start'];
          $strDate_end = $_POST['date_end'];
          $strActive = $_POST['active'];
         
-         $resupdateCourses = $this->model->updateCourses($intId_courses, $strName, $strDescription, $strDate_start, $strDate_end, $strActive);
+         $resupdateCourses = $this->model->updateCourses($intId_course, $strName, $strDescription, $strDate_start, $strDate_end, $strActive);
            
          if($resupdateCourses > 0){
                   $arrResponse = array('status' => true, 'msg' => 'Modificación de cursos ok ');
@@ -83,4 +83,27 @@ class courses extends Controllers
            die();
          
     }
+    
+    // borrado de cursos 
+    
+    public function setDeleteCourses()
+    {
+         $intId_course = $_POST['id_courses'];
+         $strName = $_POST['name'];
+         $strDescription = $_POST['description'];
+         $strDate_start = $_POST['date_start'];
+         $strDate_end = $_POST['date_end'];
+         $strActive = $_POST['active'];
+        
+         $resdeleteCourses = $this->model->deleteCourses($intId_course);
+           
+         if($resdeleteCourses > 0){
+                  $arrResponse = array('status' => true, 'msg' => 'Borrado de curso ok ');
+         }else if($resdeleteCourses = 'exist'){             
+                  $arrResponse = array('status' => false, 'msg' => 'Aviso: Curso no existe');    
+         }else {
+                  $arrResponse = array('status' => false, 'msg' => 'Error en el borrado del curso');
+         }
+           echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+           die();
 }
