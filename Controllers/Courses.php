@@ -41,7 +41,7 @@ class courses extends Controllers
             $requestinsert_sql = $this->model->insertCourses();
              if($requestinsert_sql == 0){
                  // que se devuelve aqui??? el array del insert??
-                    $arrResponse$arrData = array($this->strName,$this->strDescription,$this->strDate_start,$this->strDate_end,$this->strActive);                       
+                    $arrResponse$arrData = array(name,description,date_start,date_end,active);                       
                     echo json_encode($arrResponse$arrData, JSON_UNESCAPED_UNICODE);
             } else {
                  $arrResponse = array('status' => false, 'msg' => 'error insert tabla ');
