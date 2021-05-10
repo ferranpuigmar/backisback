@@ -2,19 +2,21 @@
 
 class classsModel extends Mysql
 {
-   	private $intId_teacher;
+	/*
+   	private $intId_class;
+	private $intId_teacher;
 	private $intId_course;
 	private $intId_schedule;
 	private $strName;
 	private $strColor;
-         
+        */ 
 	
     public function __construct()
     {
         parent::__construct();
     }
    // LISTAMOS TODOS LAS CLASES DE UN CURSO  
-    public function listClass()
+    public function listClassTodas()
     {
         $sql = "SELECT * from class";
         $reslistClass = $this->select_all($sql);  
@@ -23,17 +25,26 @@ class classsModel extends Mysql
    // ALTA DE CURSOS                            
     public function insertClass(int $id_teacher, int $id_course, int $id_schedule, string $name, string $color)
     {      
-	    
+	$return ="";    
+	$this->intId_class = $id_class;
 	$this->intId_teacher = $id_teacher;
         $this->intId_course = $id_course;
 	$this->intId_schedule = $id_schedule;
 	$this->strName= $id_name;
 	$this->strColor = $color;
+	   
+	  $sql = "SELECT * from teachers where id_teacher = '$this->intId_teacher'";
+          $reslistTeachers = $this->select_all($sql);
 	    
-         $sql = "INSERT INTO class(id_teacher, id_course, id_schedule, name, color) VALUES(?,?,?,?,?)";
-         $arrData = array($this->intId_teacher,$this->intId_course,$this->intId_schedule,$this->strName,$this->strColor);
-         $resinsertClass = $this->insert($sql,$arrData);
-         return $resinsertClass;
+	  if (empty($reslistTeachers)) {   
+             $sql = "INSERT INTO class(id_teacher, id_course, id_schedule, name, color) VALUES(?,?,?,?,?)";
+             $arrData = array($this->intId_teacher,$this->intId_course,$this->intId_schedule,$this->strName,$this->strColor);
+             $resinsertClass = $this->insert($sql,$arrData);
+              $return = $resinsertClass;
+	  }else{
+	      $return = "exits";
+	  }
+	    return $return;
 
     }
      // ACTUALIZAMOS CAMPOS DE LA TABLA CLASES (ASIGNATURAS)
