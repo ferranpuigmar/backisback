@@ -23,17 +23,17 @@ class coursesModel extends Mysql
         return $reslistCourses;
     }
     // ALTA DE CURSOS
-    public function insertCourses(string $name, string $description, string $date_start, string $date_end, string $active)
+    public function insertCourses(string $name, string $description, string $date_start, string $date_end)
     {
         $this->strName = $name;
         $this->strDescription = $description;
         $this->strDate_start = $date_start;
         $this->strDate_end = $date_end;
-        $this->strActive = $active;
+        $this->intActive = 1;
 
-        $sql_insert = "INSERT INTO courses(name,description,date_start,date_end, active) VALUES($this->strName,$this->strDescription,$this->strDate_start,$this->strDate_end,$this->strActive)";
+        $sql_insert = "INSERT INTO courses(name,description,date_start,date_end, active) VALUES('$this->strName','$this->strDescription',$this->strDate_start,$this->strDate_end,$this->intActive)";
 
-        $arrData = array($this->strName, $this->strDescription, $this->strDate_start, $this->strDate_end, $this->strActive);
+        $arrData = array($this->strName, $this->strDescription, $this->strDate_start, $this->strDate_end, $this->intActive);
         $resinsertCourses = $this->insert($sql_insert, $arrData);
         return $resinsertCourses;
     }
