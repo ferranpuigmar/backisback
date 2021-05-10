@@ -22,7 +22,7 @@ class coursesModel extends Mysql
         $reslistCourses = $this->select_all($sql);
         return $reslistCourses;
     }
-    // ALTA DE CURSOS                            
+    // ALTA DE CURSOS
     public function insertCourses(int $id_course, string $name, string $description, string $date_start, string $date_end, string $active)
     {
         $return = "";
@@ -45,8 +45,8 @@ class coursesModel extends Mysql
         }
         return $return;
     }
-    // ACTUALIZAMOS CAMPOS DE LA TABLA CURSOS
 
+    // ACTUALIZAMOS CAMPOS DE LA TABLA CURSOS
     public function updateCourses(int $id_course, string $name, string $description, string $date_start, string $date_end, string $active)
     {
         $return = "";
@@ -70,19 +70,17 @@ class coursesModel extends Mysql
         }
         return $return;
     }
-    // BORRAMOS CURSOS 
 
-    public function deleteCourses(int $id_course)
+    // BORRAMOS CURSOS
+    public function deleteCourse(int $id_course)
     {
-        $return = "";
         $this->strId_course = $id_course;
+        $sql = "SELECT * from courses where id_course = $this->strId_course";
+        $reslistCourses = $this->select($sql);
 
-        $sql = "SELECT * from courses where id_course = '$this->intId_course";
-        $reslistCourses = $this->select_all($sql);
-
-        // se comprueba que exista el curso 
+        // se comprueba que exista el curso
         if (empty($reslistCourses)) {
-            $return = "exits";
+            $return = "exist";
         } else {
             $sql_delete = "DELETE from courses WHERE id_course= $this->strId_course";
             $resdeleteCourses = $this->delete($sql_delete);

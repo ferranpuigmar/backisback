@@ -90,25 +90,21 @@ class Courses extends Controllers
 
     // borrado de cursos
 
-    public function setDeleteCourses()
+    public function setDeleteCourse()
     {
-        $intId_course = $_POST['id_courses'];
-        $strName = $_POST['name'];
-        $strDescription = $_POST['description'];
-        $strDate_start = $_POST['date_start'];
-        $strDate_end = $_POST['date_end'];
-        $strActive = $_POST['active'];
+        if ($_POST) {
+            $id_course = $_POST['id_course'];
+            $resdeleteCourses = $this->model->deleteCourse($id_course);
 
-        $resdeleteCourses = $this->model->deleteCourses($intId_course);
-
-        if ($resdeleteCourses > 0) {
-            $arrResponse = array('status' => true, 'msg' => 'Borrado de curso ok ');
-        } else if ($resdeleteCourses = 'exist') {
-            $arrResponse = array('status' => false, 'msg' => 'Aviso: Curso no existe');
-        } else {
-            $arrResponse = array('status' => false, 'msg' => 'Error en el borrado del curso');
+            if ($resdeleteCourses > 0) {
+                $arrResponse = array('status' => true, 'msg' => 'El curso se ha borrado correctamente');
+            } elseif ($resdeleteCourses = 'exist') {
+                $arrResponse = array('status' => false, 'type' => 'aviso', 'msg' => 'el curso no existe');
+            } else {
+                $arrResponse = array('status' => false, 'msg' => 'Error en el borrado del curso');
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }
-        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         die();
     }
 }

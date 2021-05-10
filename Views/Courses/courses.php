@@ -35,25 +35,32 @@ function isActive($value)
                 <tbody>
                     <?php
                     $row = "";
-                    for ($i = 0; $i < count($data); $i++) {
-                        $courseDateStart = date_create($data[$i]["date_start"]);
-                        $courseDateEnd = date_create($data[$i]["date_end"]);
-                        $desactiveClass = $data[$i]['active'] ? "" : "desactived";
-                        $row .= "
-                                <tr class='" . $desactiveClass . "'>
-                                    <th scope='row' class='w-20'>" . $data[$i]["id_course"] . "</th>
-                                    <td class='w-40'>" . $data[$i]["name"] . "</td>
-                                    <td class='w-52'>" . $data[$i]["description"] . "</td>
-                                    <td class='w-32'>" . $courseDateStart->format("d-m-Y") . "</td>
-                                    <td class='w-32'>" . $courseDateEnd->format("d-m-Y") . "</td>
-                                    <td class='w-20'>" . isActive($data[$i]['active']) . "</td>
-                                    <td class='w-72'>
-                                        <button data-id='" . $data[$i]["id_course"] . "' type='button' class='btn btn-primary btn-edit' data-bs-toggle='modal' data-bs-target='#editModal'>Editar</button>
-                                        <button data-id='" . $data[$i]["id_course"] . "' type='button' class='btn btn-secondary btn-desactive'>Desactivar</button>
-                                        <button data-id='" . $data[$i]["id_course"] . "' type='button' class='btn btn-danger btn-delete'>Eliminar</button>
-                                    </td>
-                                </tr>
-                            ";
+                    if (count($data) === 0) {
+                        $row .= "<tr>
+                        <td colspan='7'>
+                            <p>No hay cursos disponibles</p>
+                        </tr>";
+                    } else {
+                        for ($i = 0; $i < count($data); $i++) {
+                            $courseDateStart = date_create($data[$i]["date_start"]);
+                            $courseDateEnd = date_create($data[$i]["date_end"]);
+                            $desactiveClass = $data[$i]['active'] ? "" : "desactived";
+                            $row .= "
+                            <tr id='row_" . $data[$i]["id_course"] . "' class='" . $desactiveClass . "'>
+                                <th scope='row' class='w-20'>" . $data[$i]["id_course"] . "</th>
+                                <td class='w-40'>" . $data[$i]["name"] . "</td>
+                                <td class='w-52'>" . $data[$i]["description"] . "</td>
+                                <td class='w-32'>" . $courseDateStart->format("d-m-Y") . "</td>
+                                <td class='w-32'>" . $courseDateEnd->format("d-m-Y") . "</td>
+                                <td class='w-20'>" . isActive($data[$i]['active']) . "</td>
+                                <td class='w-72'>
+                                    <button data-id='" . $data[$i]["id_course"] . "' type='button' class='btn btn-primary btn-edit' data-bs-toggle='modal' data-bs-target='#editModal'>Editar</button>
+                                    <button data-id='" . $data[$i]["id_course"] . "' type='button' class='btn btn-secondary btn-desactive'>Desactivar</button>
+                                    <button data-id='" . $data[$i]["id_course"] . "' type='button' class='btn btn-danger btn-delete'>Eliminar</button>
+                                </td>
+                            </tr>
+                        ";
+                        }
                     }
                     echo $row;
                     ?>
@@ -135,6 +142,38 @@ function isActive($value)
                     )
                     const response = await editCoursesResponse.json();
                     console.log(response)
+                } catch (error) {
+                    console.log(error);
+                }
+            })
+        })
+
+
+        // delete button
+        const deleteBtn = document.querySelectorAll('#coursesList .btn-delete');
+        deleteBtn.forEach(btn => {
+            btn.addEventListener('click', async (e) => {
+                const rowId = e.target.dataset.id;
+                const requestUrl = '<?= BASE_URL ?>/courses/setDeleteCourse';
+                var formData = new FormData();
+                formData.append('id_course', parseInt(rowId))
+                try {
+                    const deleteCoursesResponse = await fetch(
+                        requestUrl, {
+                            method: 'POST',
+                            body: formData
+                        }
+                    )
+                    const response = await deleteCoursesResponse.json();
+                    if (response.status === true) {
+                        const deletedRow = document.getElementById(`row_${rowId}`)
+                        deletedRow.remove();
+                        swal.fire({
+                            icon: 'success',
+                            text: response.msg
+                        });
+                    }
+
                 } catch (error) {
                     console.log(error);
                 }
