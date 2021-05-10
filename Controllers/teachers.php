@@ -42,18 +42,19 @@ class teachers extends Controllers
     {
          $intId_teacher = $_POST['id_teacher'];
          $strName = $_POST['name'];
-         $strDescription = $_POST['description'];
-         $strDate_start = $_POST['date_start'];
-         $strDate_end = $_POST['date_end'];
-         $strActive = $_POST['active'];
-         $resinsertTeachers = $this->model->insertTeachers($intId_teacher, $strName, $strDescription, $strDate_start, $strDate_end, $strActive);
+         $strSurname = $_POST['surname'];
+         $strTelephone = $_POST['telephone'];
+         $strNif = $_POST['nif'];
+         $strMail = $_POST['mail'];
+        
+         $resinsertTeachers = $this->model->insertTeachers($intId_teacher, $strName, $strSurname, $strTelephone, $strNif, $strMail);
            
-         if($resinsertCourses > 0){
-                  $arrResponse = array('status' => true, 'msg' => 'Alta de cursos ok ');
-         }else if($resinsertCourses = 'exist'){             
-                  $arrResponse = array('status' => false, 'msg' => 'Aviso: Curso ya existe');    
+         if($resinsertTeachers > 0){
+                  $arrResponse = array('status' => true, 'msg' => 'Alta de profesor ok ');
+         }else if($resinsertTeachers = 'exist'){             
+                  $arrResponse = array('status' => false, 'msg' => 'Aviso: Profesor ya existe');    
          }else {
-                  $arrResponse = array('status' => false, 'msg' => 'Error en el Alta del curso');
+                  $arrResponse = array('status' => false, 'msg' => 'Error en el Alta de profesores');
          }
            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
            die();
