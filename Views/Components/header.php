@@ -18,8 +18,7 @@ $courseDateEnd = date_create($_SESSION['courseInfo']['date_end']);
         </div>
         <div class="dashboardHeader__user__info">
           <div class="dashboardHeader__user__info__username">
-            <div class="dashboardHeader__user__info__name">Hola <?= $_SESSION['name'] ?></div>
-            <a href="#">Editar datos</a>
+            <div class="dashboardHeader__user__info__name"><span>Hola,</span><span class="fw-bold pt-1 d-block"><?= $_SESSION['name'] ?></span></div>
           </div>
           <div class="dashboardHeader__user__info__logout">
             <i class="far fa-times-circle"></i>

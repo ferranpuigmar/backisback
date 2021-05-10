@@ -1,38 +1,43 @@
 <?php
-class courses extends Controllers
+class Courses extends Controllers
 {
     // Este método contructor es heredado de controllers
     // que carga el metodo loadModel y genera la vista
-  
+
     public function __construct()
     {
         session_start();
+        if (empty($_SESSION['username']) || !$_SESSION['is_admin']) {
+            header('location: ' . BASE_URL . '/login');
+        }
         parent::__construct();
     }
 
     public function courses()
     {
-    /*
-        $data['page_tag'] = "Courses";
-        $this->views->getView($this, "courses", $data, "auth_template");
-     */
+        $_SESSION['section'] = 'manage-course';
+        $data = $this->listAllCourses();
+        $this->views->getView($this, "courses", $data, "dashboard_template");
     }
-  
-  
-   // RECUPERAMOS LA LISTA DE CURSOS:  id, nombre, descripcion, fecha inicio, fecha fin, activo
 
-    public function setCoursesTodos()
+
+    // RECUPERAMOS LA LISTA DE CURSOS:  id, nombre, descripcion, fecha inicio, fecha fin, activo
+
+    public function listAllCourses()
     {
-        if ($_POST) {
-            $user = $_POST['username'];
-            $requestCoursesTodos = $this->model->listCoursesTodos();
-            if (empty($requestCoursesTodos)) {
-                $arrResponse = array('status' => false, 'msg' => 'no hay cursos');
+        $requestCoursesTodos = $this->model->listAllCourses();
+        if (empty($requestCoursesTodos)) {
+            $arrResponse = array('status' => false, 'msg' => 'no hay cursos');
+            if ($_POST) {
                 echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
-            } else {
+            }
+        } else {
+            if ($_POST) {
                 echo json_encode($requestCoursesTodos, JSON_UNESCAPED_UNICODE);
+                return;
             }
         }
+        return $requestCoursesTodos;
         die();
     }
     
