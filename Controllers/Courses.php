@@ -24,7 +24,7 @@ class courses extends Controllers
     public function setCoursesTodos()
     {
         if ($_POST) {
-         //   $user = $_POST['username'];
+            $user = $_POST['username'];
             $requestCoursesTodos = $this->model->listCoursesTodos();
             if (empty($requestCoursesTodos)) {
                 $arrResponse = array('status' => false, 'msg' => 'no hay cursos');
