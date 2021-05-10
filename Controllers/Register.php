@@ -19,24 +19,32 @@ class Register extends Controllers
         $this->views->getView($this, "register", $data, "auth_template");
     }
 
-    public function registerUser()
+    
+    public function setInsertStudents()
     {
-        if ($_POST) {
-            // $user = $_POST['username'];
-            // $pass = $_POST['pass'];
-            // $requestUser = $this->model->registerUser($user, $pass);
-            // if (empty($requestUser)) {
-            //     $arrResponse = array('status' => false, 'msg' => 'El usuario o la contraseña es incorrecto.');
-            // } else {
-            //     $arrData = $requestUser;
-            //     $_SESSION['idUser'] = $arrData['id'];
-            //     $_SESSION['name'] = $arrData['name'];
-            //     $arrResponse = array('status' => true, 'msg' => 'ok');
-            // }
-            // echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
-        }
-        die();
-    }
+         $intId = $_POST['id'];
+         $strUsername = $_POST['username'];
+         $strPass = $_POST['pass'];
+         $strEmail = $_POST['email'];
+         $strName = $_POST['name'];
+         $strSurname = $_POST['surname'];
+         $strTelephone = $_POST['telephone'];
+         $strNif = $_POST['nif'];
+         $strDat_registered  = $_POST['dat_registered'];
+        
+        
+         $resinsertCourses = $this->model->insertCourses($intId_course, $strName, $strDescription, $strDate_start, $strDate_end, $strActive);
+           
+         if($resinsertCourses > 0){
+                  $arrResponse = array('status' => true, 'msg' => 'Alta de cursos ok ');
+         }else if($resinsertCourses = 'exist'){             
+                  $arrResponse = array('status' => false, 'msg' => 'Aviso: Curso ya existe');    
+         }else {
+                  $arrResponse = array('status' => false, 'msg' => 'Error en el Alta del curso');
+         }
+           echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+           die();
+         
 
     public function registerListCourses()
     {
