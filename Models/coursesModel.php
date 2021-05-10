@@ -57,7 +57,7 @@ class coursesModel extends Mysql
         $this->strDate_end = $date_end;
         $this->strActive = $active; 
         
-	$sql = "SELECT * from courses where id_course = '$this->intId_course'";
+	$sql = "SELECT * from courses where id_course = '$this->intId_course";
         $reslistCourses = $this->select_all($sql); 
 	// se comprueba que exista el curso 
 	  if (empty($reslistCourses)) {
@@ -74,10 +74,21 @@ class coursesModel extends Mysql
   
     public function deleteCourses(int $id_course)
     {  
+	$return ="";
 	$this->strId_course = $id_course;
-        $sql = "DELETE from courses WHERE id_course= $this->strId_course";
-	$resdeleteCourses = $update->execute($arrData);
-		return $resdeleteCourses;   
-    }
+	   
+	$sql = "SELECT * from courses where id_course = '$this->intId_course";
+        $reslistCourses = $this->select_all($sql); 
+	
+	    // se comprueba que exista el curso 
+	 if (empty($reslistCourses)) {
+	   	$return = "exits";
+	 }else{ 
+           $sql_delete = "DELETE from courses WHERE id_course= $this->strId_course";
+	   $resdeleteCourses = $this->delete($sql_delete);
+		 $return = $resdeleteCourses;
+	 }
+	    return $return;	 
+     }
 
 }
