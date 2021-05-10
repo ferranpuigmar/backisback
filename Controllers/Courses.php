@@ -59,5 +59,28 @@ class courses extends Controllers
            die();
          
     }
+    //RECUPERAMOS LOS DATOS A MODIFICAR EN LA TABLA DE CURSOS
+    
+    public function setUpdateCourses()
+    {
+         $intId_courses = $_POST['id_courses'];
+         $strName = $_POST['name'];
+         $strDescription = $_POST['description'];
+         $strDate_start = $_POST['date_start'];
+         $strDate_end = $_POST['date_end'];
+         $strActive = $_POST['active'];
+        
+         $resupdateCourses = $this->model->updateCourses($intId_courses, $strName, $strDescription, $strDate_start, $strDate_end, $strActive);
+           
+         if($resupdateCourses > 0){
+                  $arrResponse = array('status' => true, 'msg' => 'Modificación de cursos ok ');
+         }else if($resupdateCourses = 'exist'){             
+                  $arrResponse = array('status' => false, 'msg' => 'Aviso: Curso no existe');    
+         }else {
+                  $arrResponse = array('status' => false, 'msg' => 'Error en la modificacion del curso');
+         }
+           echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+           die();
+         
+    }
 }
-
