@@ -14,7 +14,7 @@ class teachersModel extends Mysql
     }
    // LISTAMOS TODOS LOS PROFESORES
 	
-    public function listTeachers()
+    public function listTeachersTodos()
     {
         $sql = "SELECT * from teachers";
         $reslistTeachers = $this->select_all($sql);  
