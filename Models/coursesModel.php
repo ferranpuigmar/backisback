@@ -32,8 +32,8 @@ class coursesModel extends Mysql
         $this->strActive = $active; 
 	    
 	  $sql = "SELECT * from courses where id_courses = = '$this->intId_courses'";
-          $reslistCourses = $this->select_all($sql); 
-	  if (empty($reslistCourses)) {
+          $reslistCourse = $this->select_all($sql); 
+	  if (empty($reslistCourse)) {
              $sql_insert = "INSERT INTO courses(name,description,date_start,date_end, active) VALUES(?,?,?,?,?)";
              $arrData = array($this->strName,$this->strDescription,$this->strDate_start,$this->strDate_end,$this->strActive);
              $resinsertCourses = $this->insert($sql_insert,$arrData);
