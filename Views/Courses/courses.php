@@ -59,7 +59,6 @@ function isActive($value)
                                 <td class='w-20'>" . isActive($data[$i]['active']) . "</td>
                                 <td class='w-72'>
                                     <button data-id='" . $data[$i]["id_course"] . "' type='button' class='btn btn-primary btn-edit' data-bs-toggle='modal' data-bs-target='#editModal'>Editar</button>
-                                    <button data-id='" . $data[$i]["id_course"] . "' type='button' class='btn btn-secondary btn-desactive'>Desactivar</button>
                                     <button data-id='" . $data[$i]["id_course"] . "' type='button' class='btn btn-danger btn-delete'>Eliminar</button>
                                 </td>
                             </tr>
