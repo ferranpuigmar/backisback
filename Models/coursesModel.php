@@ -49,18 +49,26 @@ class coursesModel extends Mysql
   
     public function updateCourses(int $id_course, string $name,string $description,string $date_start,string $date_end, string $active)
     {
-        $this->strId_course = $id_course;
+        $return ="";
+	$this->strId_course = $id_course;
 	$this->strName = $name;
 	$this->strDescription = $description;
 	$this->strDate_start = $date_start;
         $this->strDate_end = $date_end;
         $this->strActive = $active; 
-      
-        $sql_update = "UPDATE courses SET name=?, description=?, date_start=?, date_end=?, active=? WHERE id_course = $this->strId_course";
-        $arrData = array($this->strName,$this->srtDescription,$this->strDate_start,$this->srtDate_end,$this->strActive);
-	$resupdateCourses = $this->update($sql_update,$arrData);
-	 return $resupdateCourses;
-	    
+        
+	$sql = "SELECT * from courses where id_course = '$this->intId_course'";
+        $reslistCourses = $this->select_all($sql); 
+	// se comprueba que exista el curso 
+	  if (empty($reslistCourses)) {
+ 		$return = "exits";
+	  }else{
+            $sql_update = "UPDATE courses SET name=?, description=?, date_start=?, date_end=?, active=? WHERE id_course = $this->strId_course";
+            $arrData = array($this->strName,$this->srtDescription,$this->strDate_start,$this->srtDate_end,$this->strActive);
+	    $resupdateCourses = $this->update($sql_update,$arrData);
+		$return = $resupdateCourses; 
+	  }
+	    return $return;	
     }
 	// BORRAMOS CURSOS 
   
