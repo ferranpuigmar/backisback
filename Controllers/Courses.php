@@ -21,7 +21,7 @@ class courses extends Controllers
   
    // RECUPERAMOS LA LISTA DE CURSOS:  id, nombre, descripcion, fecha inicio, fecha fin, activo
 
-    public function listCoursesTodos()
+    public function setCoursesTodos()
     {
         if ($_POST) {
          //   $user = $_POST['username'];
@@ -35,20 +35,29 @@ class courses extends Controllers
         }
         die();
     }
-    public function insertCourses()
+    
+    //RECUPERAMOS EL ALTA EN LA TABLA DE CURSOS
+    
+    public function setInsertCourses()
     {
-        if ($_POST) {
-            $requestinsert_sql = $this->model->insertCourses();
-             if($requestinsert_sql == 0){
-                 // que se devuelve aqui??? el array del insert??
-                    $arrResponse$arrData = array(name,description,date_start,date_end,active);                       
-                    echo json_encode($arrResponse$arrData, JSON_UNESCAPED_UNICODE);
-            } else {
-                 $arrResponse = array('status' => false, 'msg' => 'error insert tabla ');
-                 echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE)
-            }
-        }
-        die();
+         $intId_courses = $_POST['id_courses'];
+         $strName = $_POST['name'];
+         $strDescription = $_POST['description'];
+         $strDate_start = $_POST['date_start'];
+         $strDate_end = $_POST['date_end'];
+         $strActive = $_POST['active'];
+         $resinsertCourses = $this->model->insertCourses($intId_courses, $strName, $strDescription, $strDate_start, $strDate_end, $strActive);
+           
+         if($resinsertCourses > 0){
+                  $arrResponse = array('status' => true, 'msg' => 'Alta de cursos ok ');
+         }else if($resinsertCourses = 'exist'){             
+                  $arrResponse = array('status' => false, 'msg' => 'Aviso: Curso ya existe');    
+         }else {
+                  $arrResponse = array('status' => false, 'msg' => 'Error en el Alta del curso');
+         }
+           echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+           die();
+         
     }
 }
 
