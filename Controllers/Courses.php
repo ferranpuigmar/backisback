@@ -49,8 +49,9 @@ class Courses extends Controllers
             $strDescription = $_POST['description'];
             $strDate_start = $_POST['date_start'];
             $strDate_end = $_POST['date_end'];
+            $intActive = $_POST['active'];
 
-            $resinsertCourses = $this->model->insertCourses($strName, $strDescription, $strDate_start, $strDate_end, "1");
+            $resinsertCourses = $this->model->insertCourses($strName, $strDescription, $strDate_start, $strDate_end, $intActive);
 
             if ($resinsertCourses > 0) {
                 $arrResponse = array('status' => true, 'msg' => 'Alta de cursos ok ');
