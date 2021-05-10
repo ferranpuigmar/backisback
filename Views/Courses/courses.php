@@ -73,11 +73,26 @@ function isActive($value)
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Modal body text goes here.</p>
+                    <form id="editForm" name="registerForm" data-url="<?php echo BASE_URL . '/Courses/setUpdateCourses' ?>" enctype="multipart/form-data" novalidate>
+                        <div class="form-group">
+                            <label for="edit_course_name">Nombre</label>
+                            <input id="edit_course_name" name="name" type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit_course_description">Descripción</label>
+                            <input id="edit_course_description" name="description" type="text" class="form-control" required>
+                        </div>
+                        <div class="form-check">
+                            <input id="edit_course_active" class="form-check-input form-control" type="checkbox" value="active">
+                            <label class="form-check-label pl-1" for="edit_course_active">
+                                Curso activo
+                            </label>
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button id="editBtn" type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
@@ -85,14 +100,45 @@ function isActive($value)
 </div>
 <script>
     const listData = <?php echo json_encode($data, JSON_UNESCAPED_UNICODE) ?>;
-
     window.addEventListener('DOMContentLoaded', () => {
         const editModal = document.getElementById('editModal');
         editModal.addEventListener('show.bs.modal', function(event) {
             var button = event.relatedTarget;
             var rowDataId = button.dataset.id;
             const data = listData.find(row => row.id_course === rowDataId)
-            console.log('data: ', data)
+            const requestUrl = editForm.dataset.url;
+            const formData = new FormData();
+
+            // elements from editForm
+            const name = document.getElementById('edit_course_name');
+            const description = document.getElementById('edit_course_description');
+            const active = document.getElementById('edit_course_active');
+            name.value = data.name;
+            description.value = data.description;
+            active.checked = parseInt(data.active);
+
+            // listeners
+            const formBtn = document.getElementById('editBtn');
+            formBtn.addEventListener('click', async () => {
+                formData.append('id_course', data.id_course)
+                formData.append('name', name.value)
+                formData.append('description', description.value)
+                formData.append('active', active.checked ? "1" : "0")
+                formData.append('date_start', data.date_start)
+                formData.append('date_end', data.date_end)
+                try {
+                    const editCoursesResponse = await fetch(
+                        requestUrl, {
+                            method: 'POST',
+                            body: formData
+                        }
+                    )
+                    const response = await editCoursesResponse.json();
+                    console.log(response)
+                } catch (error) {
+                    console.log(error);
+                }
+            })
         })
     })
 </script>
