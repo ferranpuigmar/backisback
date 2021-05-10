@@ -8,7 +8,8 @@ $menu = array(
         "icon" => "far fa-calendar-alt",
         "link" => "/calendar",
         "name" => "Calendario",
-        "private" => false
+        "private" => false,
+        "has-divider" => false
     ),
     array(
         "sectionSlug" => 'edit-data',
@@ -16,35 +17,39 @@ $menu = array(
         "link" => "/profile",
         "name" => "Editar Datos",
         "private" => false,
-        "has-divider" => true,
+        "has-divider" => true
     ),
     array(
         "sectionSlug" => 'manage-classes',
         "icon" => "fas fa-chalkboard",
         "link" => "/classes",
         "name" => "Gestionar clases",
-        "private" => true
+        "private" => true,
+        "has-divider" => false
     ),
     array(
         "sectionSlug" => 'manage-course',
         "icon" => "fas fa-book-open",
         "link" => "/courses",
         "name" => "Gestionar curso",
-        "private" => true
+        "private" => true,
+        "has-divider" => false
     ),
     array(
         "sectionSlug" => 'assign-roles',
         "icon" => "fas fa-user-cog",
         "link" => "/roles",
         "name" => "Asignar Roles",
-        "private" => true
+        "private" => true,
+        "has-divider" => false
     ),
     array(
         "sectionSlug" => 'manage-teachers',
         "icon" => "fas fa-chalkboard-teacher",
         "link" => "/teachers",
         "name" => "Gestionar profesores",
-        "private" => true
+        "private" => true,
+        "has-divider" => false
     )
 );
 
