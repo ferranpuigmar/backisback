@@ -22,8 +22,9 @@ class classsModel extends Mysql
         $reslistClass = $this->select_all($sql);  
            return $reslistClass;
     }
-   // ALTA DE CURSOS                            
+   // ALTA DE CLASES                            
     public function insertClass(int $id_teacher, int $id_course, int $id_schedule, string $name, string $color)
+    	
     {      
 	$return ="";    
 	$this->intId_class = $id_class;
@@ -33,11 +34,11 @@ class classsModel extends Mysql
 	$this->strName= $id_name;
 	$this->strColor = $color;
 	   
-	  $sql = "SELECT * from teachers where id_teacher = '$this->intId_teacher'";
-          $reslistTeachers = $this->select_all($sql);
+	  $sql = "SELECT * from class where name = '$this->strName'";
+          $reslistClass = $this->select_all($sql);
 	    
-	  if (empty($reslistTeachers)) {   
-             $sql = "INSERT INTO class(id_teacher, id_course, id_schedule, name, color) VALUES(?,?,?,?,?)";
+	  if (empty($reslistClass)) {  
+	     $sql = "INSERT INTO class(id_teacher, id_course, id_schedule, name, color) VALUES($this->intId_teacher,$this->intId_course,$this->intId_schedule,'$this->strName','$this->strColor')";
              $arrData = array($this->intId_teacher,$this->intId_course,$this->intId_schedule,$this->strName,$this->strColor);
              $resinsertClass = $this->insert($sql,$arrData);
               $return = $resinsertClass;
