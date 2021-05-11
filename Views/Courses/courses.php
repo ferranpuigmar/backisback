@@ -57,7 +57,7 @@ function isActive($value)
                                 <td class='w-32'>" . $courseDateStart->format("d-m-Y") . "</td>
                                 <td class='w-32'>" . $courseDateEnd->format("d-m-Y") . "</td>
                                 <td class='w-20'>" . isActive($data[$i]['active']) . "</td>
-                                <td class='w-72'>
+                                <td class='w-28'>
                                     <button data-id='" . $data[$i]["id_course"] . "' type='button' class='btn btn-primary btn-edit' data-bs-toggle='modal' data-bs-target='#editModal'>Editar</button>
                                     <button data-id='" . $data[$i]["id_course"] . "' type='button' class='btn btn-danger btn-delete'>Eliminar</button>
                                 </td>
@@ -103,7 +103,7 @@ function isActive($value)
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id="editCourseCloseBtn" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button id="editBtn" type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
@@ -141,7 +141,7 @@ function isActive($value)
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id="createCourseCloseBtn" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button id="createCourseBtn" type="button" class="btn btn-primary">Añadir curso</button>
                 </div>
             </div>
@@ -153,7 +153,9 @@ function isActive($value)
     const listData = <?php echo json_encode($data, JSON_UNESCAPED_UNICODE) ?>;
     window.addEventListener('DOMContentLoaded', () => {
         const editModal = document.getElementById('editModal');
-        editModal.addEventListener('show.bs.modal', function(event) {
+
+        editModal.addEventListener('show.bs.modal', (event) => {
+            const closeBtn = document.getElementById('editCourseCloseBtn')
             var button = event.relatedTarget;
             var rowDataId = button.dataset.id;
             const data = listData.find(row => row.id_course === rowDataId)
@@ -185,7 +187,26 @@ function isActive($value)
                         }
                     )
                     const response = await editCoursesResponse.json();
-                    console.log(response)
+                    if (response.status === true) {
+                        const tr = document.getElementById(`row_${data.id_course}`);
+                        tr.innerHTML = `
+                            <th scope='row' class='w-20'>${data.id_course}</th>
+                            <td class='w-40'>${name.value}</td>
+                            <td class='w-52'>${description.value}</td>
+                            <td class='w-32'>${dayjs(data.date_start).format('DD-MM-YYYY')}</td>
+                            <td class='w-32'>${dayjs(data.date_end).format('DD-MM-YYYY')}</td>
+                            <td class='w-20'>${active.checked ? '<i class="far fa-check-circle"></i>' : '<i class="far fa-times-circle"></i>'}</td>
+                            <td class='w-28'>
+                                <button data-id='${data.id_course}' type='button' class='btn btn-primary btn-edit' data-bs-toggle='modal' data-bs-target='#editModal'>Editar</button>
+                                <button data-id='${data.id_course}' type='button' class='btn btn-danger btn-delete'>Eliminar</button>
+                            </td>
+                        `;
+                        swal.fire({
+                            icon: 'success',
+                            text: response.msg
+                        });
+                        closeBtn.click();
+                    }
                 } catch (error) {
                     console.log(error);
                 }

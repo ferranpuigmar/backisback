@@ -9,7 +9,7 @@ $menu = array(
         "link" => "/calendar",
         "name" => "Calendario",
         "private" => false,
-        "has-divider" => false
+        "has-divider" => false,
     ),
     array(
         "sectionSlug" => 'edit-data',
@@ -25,7 +25,7 @@ $menu = array(
         "link" => "/classes",
         "name" => "Gestionar clases",
         "private" => true,
-        "has-divider" => false
+        "has-divider" => false,
     ),
     array(
         "sectionSlug" => 'manage-course',
@@ -33,7 +33,7 @@ $menu = array(
         "link" => "/courses",
         "name" => "Gestionar curso",
         "private" => true,
-        "has-divider" => false
+        "has-divider" => false,
     ),
     array(
         "sectionSlug" => 'assign-roles',
@@ -41,7 +41,7 @@ $menu = array(
         "link" => "/roles",
         "name" => "Asignar Roles",
         "private" => true,
-        "has-divider" => false
+        "has-divider" => false,
     ),
     array(
         "sectionSlug" => 'manage-teachers',
@@ -49,7 +49,7 @@ $menu = array(
         "link" => "/teachers",
         "name" => "Gestionar profesores",
         "private" => true,
-        "has-divider" => false
+        "has-divider" => false,
     )
 );
 
