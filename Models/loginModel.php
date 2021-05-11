@@ -60,6 +60,8 @@ class loginModel extends Mysql
         return $request;
     }
     /*
+    // esta es la lista de cursos de una profesora (ojo ver donde incluir en el hear) 
+    
     public function listCourseteacher(string $user)
     {
         $this->strUser = $user;
