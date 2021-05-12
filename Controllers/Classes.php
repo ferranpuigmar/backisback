@@ -40,8 +40,7 @@ class Classes extends Controllers
         return $arrResponse;
         die();
     }
-    
-    // RECUPERAMOS LOS HORARIOS DE LAS CLASES 
+   // RECUPERAMOS LOS HORARIOS DE LAS CLASES 
     public function listScheduleClass($id_class)
     {
         $requestlistScheduleClass = $this->model->listScheduleClass((int)$id_class);
