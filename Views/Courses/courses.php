@@ -57,7 +57,7 @@ function isActive($value)
                                 <td class='w-32'>" . $courseDateStart->format("d-m-Y") . "</td>
                                 <td class='w-32'>" . $courseDateEnd->format("d-m-Y") . "</td>
                                 <td class='w-20'>" . isActive($data[$i]['active']) . "</td>
-                                <td class='w-28'>
+                                <td class='w-40'>
                                     <button data-id='" . $data[$i]["id_course"] . "' type='button' class='btn btn-primary btn-edit' data-bs-toggle='modal' data-bs-target='#editModal'>Editar</button>
                                     <button data-id='" . $data[$i]["id_course"] . "' type='button' class='btn btn-danger btn-delete'>Eliminar</button>
                                 </td>
