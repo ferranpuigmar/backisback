@@ -23,5 +23,5 @@
 <script>
   window.addEventListener('DOMContentLoaded', () => {
 
-      }
+  })
 </script>
