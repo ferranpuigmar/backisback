@@ -20,14 +20,6 @@ $menu = array(
         "has-divider" => true
     ),
     array(
-        "sectionSlug" => 'manage-classes',
-        "icon" => "fas fa-chalkboard",
-        "link" => "/classes",
-        "name" => "Gestionar clases",
-        "private" => true,
-        "has-divider" => false,
-    ),
-    array(
         "sectionSlug" => 'manage-course',
         "icon" => "fas fa-book-open",
         "link" => "/courses",
@@ -35,19 +27,29 @@ $menu = array(
         "private" => true,
         "has-divider" => false,
     ),
-    array(
-        "sectionSlug" => 'assign-roles',
-        "icon" => "fas fa-user-cog",
-        "link" => "/roles",
-        "name" => "Asignar Roles",
+     array(
+        "sectionSlug" => 'manage-classes',
+        "icon" => "fas fa-chalkboard",
+        "link" => "/classes",
+        "name" => "Gestionar clases",
         "private" => true,
         "has-divider" => false,
     ),
+    
     array(
         "sectionSlug" => 'manage-teachers',
         "icon" => "fas fa-chalkboard-teacher",
         "link" => "/teachers",
         "name" => "Gestionar profesores",
+        "private" => true,
+        "has-divider" => false,
+    ),
+    
+    array(
+        "sectionSlug" => 'assign-roles',
+        "icon" => "fas fa-user-cog",
+        "link" => "/roles",
+        "name" => "Asignar Roles",
         "private" => true,
         "has-divider" => false,
     )
