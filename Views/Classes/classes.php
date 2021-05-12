@@ -16,6 +16,7 @@
                         <th scope="col">Id</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Curso</th>
+                        <th scope="col">Profesor</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
@@ -34,9 +35,10 @@
                                 <th scope='row' class='w-20'>" . $data[$i]["id_class"] . "</th>
                                 <td class='w-40'>" . $data[$i]["name"] . "</td>
                                 <td class='w-40'>" . $data[$i]["courseName"] . "</td>
+                                <td class='w-40'>" . $data[$i]["teacherName"] . "</td>
                                 <td class='w-56'>
                                     <button data-title='" . $data[$i]["name"] . "' data-id='" . $data[$i]["id_schedule"] . "' type='button' class='btn btn-info btn-schedule' data-bs-toggle='modal' data-bs-target='#schedulesModal'>Ver horarios</button>
-                                    <button data-id='" . $data[$i]["id_class"] . "' type='button' class='btn btn-secondary btn-edit' data-bs-toggle='modal' data-bs-target='#editModal'>Editar</button>
+                                    <button data-id='" . $data[$i]["id_class"] . "' type='button' class='btn btn-secondary btn-edit' data-bs-toggle='modal' data-bs-target='#editModal'>Modificar</button>
                                     <button data-id='" . $data[$i]["id_class"] . "' type='button' class='btn btn-danger btn-delete'>Eliminar</button>
                                 </td>
                             </tr>
@@ -337,3 +339,4 @@
         })
     })
 </script>
+
