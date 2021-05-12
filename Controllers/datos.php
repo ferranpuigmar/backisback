@@ -22,13 +22,13 @@ class Datos extends Controllers
 
     // RECUPERAR LOS DATOS DEL USUARIO 
 
-    public function listDatos()
+    public function setlistDatos()
     {
         if ($_POST) {
             $user = $_POST['username'];
-            $requestCourses = $this->model->listDatos($username);
+            $requestDatos = $this->model->listDatos($username);
             if (empty($requestDatos)) {
-                $arrResponse = array('status' => false, 'msg' => 'sin datos');
+                $arrResponse = array('status' => false, 'msg' => 'sin datos usuario');
                 echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
             } else {
                 echo json_encode($requestDatos, JSON_UNESCAPED_UNICODE);
@@ -38,7 +38,7 @@ class Datos extends Controllers
     }
 
    //ACTULIZAMOS LOS DATOS DEL USUARIO 
-    public function updateDatos()
+    public function setupdateDatos()
     {
         if ($_POST) {
             
