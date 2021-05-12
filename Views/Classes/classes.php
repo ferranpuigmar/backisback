@@ -159,7 +159,7 @@
             <td class='w-40'>${data.day}</td>
             <td class='w-52'>${data.courseName}</td>
             <td class='w-28'>
-            <button data-title='${data.title}' data-id='${data.id_schedule}' type='button' class='btn btn-info btn-schedule' data-bs-toggle='modal' data-bs-target='#schedulesModal'>Ver horarios</button>
+            <button data-title='${data.title}' data-id='${data.id_class}' type='button' class='btn btn-info btn-schedule' data-bs-toggle='modal' data-bs-target='#schedulesModal'>Ver horarios</button>
                 <button data-id='${data.id_class}' type='button' class='btn btn-secondary btn-edit' data-bs-toggle='modal' data-bs-target='#editModal'>Editar</button>
                 <button data-id='${data.id_class}' type='button' class='btn btn-danger btn-delete'>Eliminar</button>
             </td>
@@ -310,7 +310,7 @@
         const viewScheduleModal = document.getElementById('schedulesModal');
         viewScheduleModal.addEventListener('show.bs.modal', async function(event) {
             const button = event.relatedTarget;
-            const id_schedule = button.dataset.id;
+            const id_class = button.dataset.id;
             const title = button.dataset.title;
             const modalDivTitle = document.querySelector('#schedulesModal .modal-title');
             modalDivTitle.innerHTML = title;
@@ -318,7 +318,7 @@
             try {
                 const requestUrl = '<?= BASE_URL ?>/classes/listScheduleClass';
                 const formData = new FormData();
-                formData.append('id_class', id_schedule)
+                formData.append('id_class', id_class)
                 const getSchedulesResp = await fetch(
                     requestUrl, {
                         method: 'POST',

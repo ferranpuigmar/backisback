@@ -33,7 +33,6 @@ class coursesModel extends Mysql
     // ACTUALIZAMOS CAMPOS DE LA TABLA CURSOS
     public function updateCourses(int $id_course, string $name, string $description, string $date_start, string $date_end, string $active)
     {
-        $return = "";
         $this->strId_course = $id_course;
         $this->strName = $name;
         $this->strDescription = $description;

@@ -27,25 +27,21 @@ class datosModel extends Mysql
     }
 
     // ACTUALIZAMOS CAMPOS DE LA TABLA CURSOS
-    public function updateDatos(string $strusername, string $pass, string $mail)
+    public function updateDatos(string $strusername, string $pass, string $email)
     {
-        $return = "";
         $this->strUser = $strusername;
         $this->strPasword = $pass;
-        $this->strMail = $mail;
-
+        $this->strMail = $email;
+        $sql_update = "UPDATE users_admin SET username=?, password=?, email=? WHERE username = '$this->strUser'";
+        $arrData = array($this->strUser, $this->strPasword, $this->strMail);
+        $resupdateDatos = $this->update($sql_update, $arrData);
         // if ($_SESSION['is_admin'] == "1") {
-        //  $sql_update = "UPDATE users_admin  SET username=?, password=?, mail=? where username = $this->strUser";
-        //  $arrData = array($this->strUser, $this->strPasword, $this->strMail);
-        //  $resupdateDatos = $this->update($sql_update, $arrData);
-        //  $result = $resupdateDatos
-        // }else{
-        //  $sql_update = "UPDATE users  SET username=?, pass=?, mail=? where username = $this->strUser";
-        //  $arrData = array($this->strUser, $this->strPasword, $this->strMail);
-        //  $resupdateDatos = $this->update($sql_update, $arrData);
-        //  $result = $resupdateDatos
 
+        // } else {
+        //     $sql_update = "UPDATE students SET username=?, pass=?, email=? WHERE username = '$this->strUser'";
+        //     $arrData = array($this->strUser, $this->strPasword, $this->strMail);
+        //     $resupdateDatos = $this->update($sql_update, $arrData);
         // }
-        // return $resupdateDatos;
+        return $resupdateDatos;
     }
 }

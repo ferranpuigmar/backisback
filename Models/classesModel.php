@@ -19,13 +19,13 @@ class classesModel extends Mysql
         return $reslistClass;
     }
     // LISTAMOS TODOS LOS HORARIOS DE LAS CLASES
-    public function listScheduleClass()
+    public function listScheduleClass(int $id_class)
     {
-        $this->intId_class = $_POST['id_class'];
+        $this->intId_class = $id_class;
         $sql = "select c.id_class, s.day, s.time_start, s.time_end
-                from schedule s, class c, teachers t
-                where c.id_class = s.id_class and
-                      t.id_teacher = c.id_teacher";
+                    from schedule s, class c, teachers t
+                    where c.id_class = s.id_class and
+                          t.id_teacher = c.id_teacher";
 
         $resScheduleClass = $this->select_all($sql);
         return $resScheduleClass;

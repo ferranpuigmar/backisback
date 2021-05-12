@@ -32,17 +32,14 @@ class Datos extends Controllers
         die();
     }
 
-    //ACTULIZAMOS LOS DATOS DEL USUARIO 
+    //ACTULIZAMOS LOS DATOS DEL USUARIO
     public function setupdateDatos()
     {
         if ($_POST) {
-
             $strUsername = $_POST['username'];
             $strPassword = $_POST['password'];
-            $strMail = $_POST['mail'];
-
+            $strMail = $_POST['email'];
             $resupdateDatos = $this->model->updateDatos($strUsername, $strPassword, $strMail);
-
             if ($resupdateDatos > 0) {
                 $arrResponse = array('status' => true, 'msg' => 'datos usuario actualizado ok ');
             } else {

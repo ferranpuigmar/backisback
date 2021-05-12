@@ -13,7 +13,6 @@ class Login extends Controllers
     {
         // $data['page_id'] = 1;
         $data['page_tag'] = "Login";
-        $data['username'] = $_SESSION['name'];
         $this->views->getView($this, "login", $data, "auth_template");
     }
 
