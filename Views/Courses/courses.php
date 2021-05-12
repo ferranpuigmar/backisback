@@ -161,7 +161,7 @@ function isActive($value)
             <td class='w-32'>${dayjs(data.date_end).format('DD-MM-YYYY')}</td>
             <td class='w-20'>${data.active ? '<i class="far fa-check-circle"></i>' : '<i class="far fa-times-circle"></i>'}</td>
             <td class='w-28'>
-                <button data-id='${data.id_course}' type='button' class='btn btn-primary btn-edit' data-bs-toggle='modal' data-bs-target='#editModal'>Editar</button>
+                <button data-id='${data.id_course}' type='button' class='btn btn-primary btn-edit' data-bs-toggle='modal' data-bs-target='#editModal'>Modificar</button>
                 <button data-id='${data.id_course}' type='button' class='btn btn-danger btn-delete'>Eliminar</button>
             </td>
         `;
