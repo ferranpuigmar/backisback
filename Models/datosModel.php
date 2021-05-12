@@ -18,7 +18,7 @@ class datosModel extends Mysql
             $sql = "select * from users_admin 
             where username = '$this->strUser'";
         } else {
-            $$sql = "select * from students 
+            $sql = "select * from students 
             where username = '$this->strUser'";
         }
 

@@ -9,7 +9,7 @@
         </div>
         <div class="form-group">
           <label for="datos_password">Contraseña</label>
-          <input id="datos_password" name="password" type="password" class="form-control" placeholder="Password" value="<?= $data['password'] ?>" required>
+          <input id="datos_password" name="password" type="password" class="form-control" placeholder="Password" value="<?= $_SESSION['is_admin'] == "1" ? $data['password'] : $data['pass'] ?>" required>
         </div>
         <div class="form-group">
           <label for="datos_email">Email</label>
