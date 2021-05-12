@@ -13,7 +13,7 @@ export class Register{
   }
 
   async listCourses(){
-    const url = `${this.baseURL}Register/registerListCourses`;
+    const url = `${this.baseURL}/Register/registerListCourses`;
     try {
       const listCoursesResponse = await fetch(
         url,
@@ -38,7 +38,9 @@ export class Register{
 
   async sendForm(){
     const url = this.form.dataset.url;
+    console.log(url);
     const formData = new FormData(this.form);
+    console.log(formData);
     try {
       const registerResponse = await fetch(
         url,

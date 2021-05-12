@@ -37,7 +37,7 @@
                                 <td class='w-40'>" . $data[$i]["courseName"] . "</td>
                                 <td class='w-40'>" . $data[$i]["teacherName"] . "</td>
                                 <td class='w-56'>
-                                    <button data-title='" . $data[$i]["name"] . "' data-id='" . $data[$i]["id_schedule"] . "' type='button' class='btn btn-info btn-schedule' data-bs-toggle='modal' data-bs-target='#schedulesModal'>Ver horarios</button>
+                                    <button data-title='" . $data[$i]["name"] . "' data-id='" . $data[$i]["id_class"] . "' type='button' class='btn btn-info btn-schedule' data-bs-toggle='modal' data-bs-target='#schedulesModal'>Ver horarios</button>
                                     <button data-id='" . $data[$i]["id_class"] . "' type='button' class='btn btn-secondary btn-edit' data-bs-toggle='modal' data-bs-target='#editModal'>Modificar</button>
                                     <button data-id='" . $data[$i]["id_class"] . "' type='button' class='btn btn-danger btn-delete'>Eliminar</button>
                                 </td>
@@ -156,14 +156,21 @@
 
     function renderTr(data) {
         return `
-            <th scope='row' class='w-20'>${data.id_class}</th>
-            <td class='w-40'>${data.name}</td>
+            <td class='w-40'>${data.day}</td>
             <td class='w-52'>${data.courseName}</td>
             <td class='w-28'>
             <button data-title='${data.title}' data-id='${data.id_schedule}' type='button' class='btn btn-info btn-schedule' data-bs-toggle='modal' data-bs-target='#schedulesModal'>Ver horarios</button>
                 <button data-id='${data.id_class}' type='button' class='btn btn-secondary btn-edit' data-bs-toggle='modal' data-bs-target='#editModal'>Editar</button>
                 <button data-id='${data.id_class}' type='button' class='btn btn-danger btn-delete'>Eliminar</button>
             </td>
+        `;
+    }
+
+    function renderScheduleTr(data) {
+        return `
+            <td class='w-40'>${data.day}</td>
+            <td class='w-52'>${data.time_start}</td>
+            <td class='w-52'>${data.time_end}</td>
         `;
     }
 
@@ -309,9 +316,9 @@
             modalDivTitle.innerHTML = title;
 
             try {
-                const requestUrl = '<?= BASE_URL ?>/classes/getSchedules';
+                const requestUrl = '<?= BASE_URL ?>/classes/listScheduleClass';
                 const formData = new FormData();
-                formData.append('id_schedule', id_schedule)
+                formData.append('id_class', id_schedule)
                 const getSchedulesResp = await fetch(
                     requestUrl, {
                         method: 'POST',
@@ -319,19 +326,19 @@
                     }
                 )
                 const response = await getSchedulesResp.json();
-                if (response.status === true) {
-                    // const tbody = document.querySelector('#scheduleListTable tbody');
-                    // const tr = document.createElement('tr');
-                    // tr.setAttribute("id", `row_${Number(response.id)}`);
-                    // tr.innerHTML = renderTr({
-                    //     id_class: Number(response.id),
-                    //     name: name.value,
-                    //     description: description.value,
-                    //     date_start: date_start.value,
-                    //     date_end: date_end.value,
-                    //     active: true
-                    // });
-                    // tbody.appendChild(tr);
+                console.log('resonse: ', response)
+                if (!response.status) {
+                    const tbody = document.querySelector('#scheduleListTable tbody');
+                    response.forEach(schedule => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = renderScheduleTr({
+                            day: dayjs(schedule.day).format('DD-MM-YYYY'),
+                            time_start: schedule.time_start,
+                            time_end: schedule.time_end,
+                        });
+                        console.log(tr)
+                        tbody.appendChild(tr);
+                    })
                 }
             } catch (error) {
                 console.log(error);
@@ -339,4 +346,3 @@
         })
     })
 </script>
-

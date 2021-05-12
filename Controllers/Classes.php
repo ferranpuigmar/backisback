@@ -40,23 +40,20 @@ class Classes extends Controllers
         return $arrResponse;
         die();
     }
-   // RECUPERAMOS LOS HORARIOS DE LAS CLASES 
-    public function listScheduleClass($id_class)
+
+    // RECUPERAMOS LOS HORARIOS DE LAS CLASES 
+    public function listScheduleClass()
     {
-        $requestlistScheduleClass = $this->model->listScheduleClass((int)$id_class);
-        if (empty($requestlistScheduleClass)) {
-            $arrResponse = array('status' => false, 'msg' => 'No hay horario para esa clase');
-            if ($_POST) {
+        if ($_POST) {
+            $intIdClass = $_POST['id_class'];
+            $requestlistScheduleClass = $this->model->listScheduleClass((int)$intIdClass);
+            if (empty($requestlistScheduleClass)) {
+                $arrResponse = array('status' => false, 'msg' => 'No hay horario para esa clase');
+                echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+            } else {
                 echo json_encode($requestlistScheduleClass, JSON_UNESCAPED_UNICODE);
             }
-        } else {
-            if ($_POST) {
-                echo json_encode($requestlistScheduleClass, JSON_UNESCAPED_UNICODE);
-                return;
-            }
-            $arrResponse = $requestlistScheduleClass;
         }
-        return $arrResponse;
         die();
     }
 
