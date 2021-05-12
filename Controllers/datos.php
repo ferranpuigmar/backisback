@@ -7,45 +7,40 @@ class Datos extends Controllers
     {
         session_start();
         if (empty($_SESSION['username'])) {
-            header('location: ' . BASE_URL . '/datos');
+            header('location: ' . BASE_URL . '/login');
         }
         parent::__construct();
     }
-     
-      public function datos()
+
+    public function datos()
     {
         $_SESSION['section'] = 'datos';
-     //    $data = $this->model->listDatos($_SESSION['username']);
-        $data = $this->listDatos();
+        $data = $this->setlistDatos($_SESSION['username']);
         $this->views->getView($this, "datos", $data, "dashboard_template");
     }
 
     // RECUPERAR LOS DATOS DEL USUARIO 
-
-    public function setlistDatos()
+    public function setlistDatos(string $username)
     {
-        if ($_POST) {
-            $user = $_POST['username'];
-            $requestDatos = $this->model->listDatos($username);
-            if (empty($requestDatos)) {
-                $arrResponse = array('status' => false, 'msg' => 'sin datos usuario');
-                echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
-            } else {
-                echo json_encode($requestDatos, JSON_UNESCAPED_UNICODE);
-            }
+        $requestDatos = $this->model->listDatos($username);
+        if (empty($requestDatos)) {
+            $arrResponse = array('status' => false, 'msg' => 'sin datos usuario');
+        } else {
+            $arrResponse = $requestDatos;
         }
+        return $arrResponse;
         die();
     }
 
-   //ACTULIZAMOS LOS DATOS DEL USUARIO 
+    //ACTULIZAMOS LOS DATOS DEL USUARIO 
     public function setupdateDatos()
     {
         if ($_POST) {
-            
+
             $strUsername = $_POST['username'];
             $strPassword = $_POST['password'];
             $strMail = $_POST['mail'];
-          
+
             $resupdateDatos = $this->model->updateDatos($strUsername, $strPassword, $strMail);
 
             if ($resupdateDatos > 0) {

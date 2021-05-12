@@ -12,9 +12,9 @@ $menu = array(
         "has-divider" => false,
     ),
     array(
-        "sectionSlug" => 'edit-data',
+        "sectionSlug" => 'datos',
         "icon" => "fas fa-user-edit",
-        "link" => "/profile",
+        "link" => "/datos",
         "name" => "Editar Datos",
         "private" => false,
         "has-divider" => true
@@ -27,7 +27,7 @@ $menu = array(
         "private" => true,
         "has-divider" => false,
     ),
-     array(
+    array(
         "sectionSlug" => 'manage-classes',
         "icon" => "fas fa-chalkboard",
         "link" => "/classes",
@@ -35,7 +35,7 @@ $menu = array(
         "private" => true,
         "has-divider" => false,
     ),
-    
+
     array(
         "sectionSlug" => 'manage-teachers',
         "icon" => "fas fa-chalkboard-teacher",
@@ -44,7 +44,7 @@ $menu = array(
         "private" => true,
         "has-divider" => false,
     ),
-    
+
     array(
         "sectionSlug" => 'assign-roles',
         "icon" => "fas fa-user-cog",
