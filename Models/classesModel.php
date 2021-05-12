@@ -13,11 +13,24 @@ class classesModel extends Mysql
         $sql = "SELECT c.id_class, c.id_teacher, c.id_schedule, c.name, c.color, cou.name as courseName FROM class c 
         JOIN courses cou
         WHERE 
-             cou.id_course = c.id_course";
+        cou.id_course = c.id_course";
         $reslistClass = $this->select_all($sql);
         return $reslistClass;
     }
-
+     // LISTAMOS TODOS LOS HORARIOS DE LAS CLASES 
+    public function listScheduleClass($id_class)
+    {
+        $this->intId_class = $id_class;
+        
+        $sql = "SELECT c.id_class,  s.day, s.time_start, s.time_end 
+                FROM class c JOIN courses cou join schedule s 
+                WHERE 
+                    c.id_class = $this->intId_class and
+                    c.id_schedule = s.id_schedule and
+                    c.id_course = cou.id_course;";
+                    $resScheduleClass = $this->select_all($sql);
+                        return $resScheduleClass;
+    }
     // ALTA DE CLASES
     public function insertClass(int $id_teacher, int $id_course, int $id_schedule, string $name, string $color)
     {
