@@ -49,13 +49,13 @@ class Courses extends Controllers
             $strDescription = $_POST['description'];
             $strDate_start = $_POST['date_start'];
             $strDate_end = $_POST['date_end'];
-            $intActive = $_POST['active'];
+            $intActive = 1;
 
             $resinsertCourses = $this->model->insertCourses($strName, $strDescription, $strDate_start, $strDate_end, $intActive);
 
             if ($resinsertCourses > 0) {
-                $arrResponse = array('status' => true, 'msg' => 'Alta de cursos ok ');
-            } else if ($resinsertCourses = 'exist') {
+                $arrResponse = array('status' => true, 'msg' => 'Alta de cursos ok ', 'id' => $resinsertCourses);
+            } elseif ($resinsertCourses = 'exist') {
                 $arrResponse = array('status' => false, 'msg' => 'Aviso: Curso ya existe');
             } else {
                 $arrResponse = array('status' => false, 'msg' => 'Error en el Alta del curso');

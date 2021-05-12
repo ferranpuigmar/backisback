@@ -28,6 +28,7 @@
     a {
         text-decoration: none;
     }
+
     // custom class display
     .fc-daygrid-event {
         display: flex;
@@ -45,12 +46,16 @@
             display: block !important;
             opacity: 1;
             pointer-events: none;
-            @apply p-1 bg-white border-indigo-800;
+            @apply p-1 bg-white border-indigo-800 text-indigo-600;
             border-style: solid;
             border-width: 1px;
             border-radius: 5px;
             z-index: 10000;
             transform: translateY(-20px);
+        }
+
+        &.fc-event-today {
+            @apply text-white;
         }
 
         .fc-daygrid-event-dot {

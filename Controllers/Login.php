@@ -32,9 +32,14 @@ class Login extends Controllers
                     $arrData = $requestUser;
                     $_SESSION['username'] = $user;
                     $_SESSION['name'] = $arrData['name'];
+                    $_SESSION['surname'] = $arrData['surname'];
+
                     if (isset($arrData['id_user_admin'])) {
+                        $_SESSION['id_user'] = $arrData['id_user'];
                         $_SESSION['is_admin'] = true;
+                        $_SESSION['id_teacher'] = $arrData['id_teacher'];
                     } else {
+                        $_SESSION['id_user'] = $arrData['id'];
                         $_SESSION['is_admin'] = false;
                     }
                     $arrResponse = array('status' => true, 'msg' => 'ok', 'is_admin' => $_SESSION['is_admin'], 'name' => $arrData['name']);

@@ -16,7 +16,11 @@ class Calendar extends Controllers
     {
         // $data['page_id'] = 1;
         $_SESSION['section'] = 'calendar';
-        $data = $this->model->listClass($_SESSION['username']);
+        if ($_SESSION['is_admin'] == "1") {
+            $data = $this->model->listClass($_SESSION['id_teacher']);
+        } else {
+            $data = $this->model->listClass($_SESSION['username']);
+        }
 
         $this->views->getView($this, "calendar", $data, "dashboard_template");
     }

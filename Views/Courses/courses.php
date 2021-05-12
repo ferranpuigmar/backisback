@@ -24,7 +24,7 @@ function isActive($value)
     } else {
     ?>
         <div id="coursesList" class="course-list">
-            <table class="table">
+            <table id="courseListTable" class="table">
                 <thead>
                     <tr>
                         <th scope="col">Id</th>
@@ -151,6 +151,22 @@ function isActive($value)
 
 <script>
     const listData = <?php echo json_encode($data, JSON_UNESCAPED_UNICODE) ?>;
+
+    function renderTr(data) {
+        return `
+            <th scope='row' class='w-20'>${data.id_course}</th>
+            <td class='w-40'>${data.name}</td>
+            <td class='w-52'>${data.description}</td>
+            <td class='w-32'>${dayjs(data.date_start).format('DD-MM-YYYY')}</td>
+            <td class='w-32'>${dayjs(data.date_end).format('DD-MM-YYYY')}</td>
+            <td class='w-20'>${data.active ? '<i class="far fa-check-circle"></i>' : '<i class="far fa-times-circle"></i>'}</td>
+            <td class='w-28'>
+                <button data-id='${data.id_course}' type='button' class='btn btn-primary btn-edit' data-bs-toggle='modal' data-bs-target='#editModal'>Editar</button>
+                <button data-id='${data.id_course}' type='button' class='btn btn-danger btn-delete'>Eliminar</button>
+            </td>
+        `;
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
         const editModal = document.getElementById('editModal');
 
@@ -189,18 +205,14 @@ function isActive($value)
                     const response = await editCoursesResponse.json();
                     if (response.status === true) {
                         const tr = document.getElementById(`row_${data.id_course}`);
-                        tr.innerHTML = `
-                            <th scope='row' class='w-20'>${data.id_course}</th>
-                            <td class='w-40'>${name.value}</td>
-                            <td class='w-52'>${description.value}</td>
-                            <td class='w-32'>${dayjs(data.date_start).format('DD-MM-YYYY')}</td>
-                            <td class='w-32'>${dayjs(data.date_end).format('DD-MM-YYYY')}</td>
-                            <td class='w-20'>${active.checked ? '<i class="far fa-check-circle"></i>' : '<i class="far fa-times-circle"></i>'}</td>
-                            <td class='w-28'>
-                                <button data-id='${data.id_course}' type='button' class='btn btn-primary btn-edit' data-bs-toggle='modal' data-bs-target='#editModal'>Editar</button>
-                                <button data-id='${data.id_course}' type='button' class='btn btn-danger btn-delete'>Eliminar</button>
-                            </td>
-                        `;
+                        tr.innerHTML = renderTr({
+                            id_course: data.id_course,
+                            name: name.value,
+                            description: description.value,
+                            date_start: data.date_start,
+                            date_end: data.date_end,
+                            active: active.checked
+                        });
                         swal.fire({
                             icon: 'success',
                             text: response.msg
@@ -255,7 +267,7 @@ function isActive($value)
             const description = document.getElementById('create_course_description')
             const date_start = document.getElementById('create_course_date_start')
             const date_end = document.getElementById('create_course_date_end')
-            const active = "1";
+            const active = 1;
 
             // listeners
             const formAddCourseBtn = document.getElementById('createCourseBtn')
@@ -273,7 +285,20 @@ function isActive($value)
                         }
                     )
                     const response = await addCoursesResponse.json();
-                    console.log(response)
+                    if (response.status === true) {
+                        const tbody = document.querySelector('#courseListTable tbody');
+                        const tr = document.createElement('tr');
+                        tr.setAttribute("id", `row_${Number(response.id)}`);
+                        tr.innerHTML = renderTr({
+                            id_course: Number(response.id),
+                            name: name.value,
+                            description: description.value,
+                            date_start: date_start.value,
+                            date_end: date_end.value,
+                            active: true
+                        });
+                        tbody.appendChild(tr);
+                    }
                 } catch (error) {
                     console.log(error);
                 }
