@@ -26,8 +26,7 @@ class classesModel extends Mysql
         $sql = "SELECT c.id_class,  s.day, s.time_start, s.time_end 
                     FROM class c JOIN courses cou join schedule s 
                     WHERE 
-                        c.id_class = $this->intId_class and
-                        c.id_schedule = s.id_schedule and
+                        s.id_class = $this->intId_class and
                         c.id_course = cou.id_course;";
          */
         $sql = "select c.id_class, s.day, s.time_start, s.time_end
@@ -38,7 +37,6 @@ class classesModel extends Mysql
         $resScheduleClass = $this->select_all($sql);
         return $resScheduleClass;
     }
-
     // ALTA DE CLASES
     public function insertClass(int $id_teacher, int $id_course, int $id_schedule, string $name, string $color)
     {

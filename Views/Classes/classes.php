@@ -329,6 +329,7 @@
                 console.log('resonse: ', response)
                 if (!response.status) {
                     const tbody = document.querySelector('#scheduleListTable tbody');
+                    tbody.innerHTML = "";
                     response.forEach(schedule => {
                         const tr = document.createElement('tr');
                         tr.innerHTML = renderScheduleTr({
