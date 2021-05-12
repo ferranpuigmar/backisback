@@ -22,12 +22,19 @@ class classesModel extends Mysql
     public function listScheduleClass()
     {
         $this->intId_class = $_POST['id_class'];
+        /*
         $sql = "SELECT c.id_class,  s.day, s.time_start, s.time_end 
                     FROM class c JOIN courses cou join schedule s 
                     WHERE 
                         c.id_class = $this->intId_class and
                         c.id_schedule = s.id_schedule and
                         c.id_course = cou.id_course;";
+         */
+        $sql = "select c.id_class, s.day, s.time_start, s.time_end
+                from schedule s, class c, teachers t
+                where c.id_class = s.id_class and
+                    t.id_teacher = c.id_teacher";
+        
         $resScheduleClass = $this->select_all($sql);
         return $resScheduleClass;
     }
