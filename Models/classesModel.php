@@ -10,10 +10,11 @@ class classesModel extends Mysql
     // LISTAMOS TODOS LAS CLASES DE UN CURSO  
     public function listClasses($id_teacher)
     {
-        $sql = "SELECT c.id_class, c.id_teacher, c.id_schedule, c.name, c.color, cou.name as courseName FROM class c 
-        JOIN courses cou
+        $sql = "SELECT c.id_class, c.id_teacher, concat_ws('  ', t.name, t.surname) as teacherName, c.id_schedule, c.name , c.color, cou.name as courseName FROM class c 
+        JOIN courses cou JOIN teachers t
         WHERE 
-        cou.id_course = c.id_course";
+        cou.id_course = c.id_course and
+        c.id_teacher  = t.id_teacher";
         $reslistClass = $this->select_all($sql);
         return $reslistClass;
     }
@@ -94,3 +95,4 @@ class classesModel extends Mysql
         }
     }
 }
+
