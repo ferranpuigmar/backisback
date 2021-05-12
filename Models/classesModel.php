@@ -13,8 +13,7 @@ class classesModel extends Mysql
         $sql = "SELECT c.id_class, c.id_teacher, c.id_schedule, c.name, c.color, cou.name as courseName FROM class c 
         JOIN courses cou
         WHERE 
-        c.id_teacher = $id_teacher and
-        cou.id_course = c.id_course";
+             cou.id_course = c.id_course";
         $reslistClass = $this->select_all($sql);
         return $reslistClass;
     }
